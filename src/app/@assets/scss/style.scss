@@ -36,6 +36,10 @@
   font-family: "vibes";
   src: url("../fonts/Great_Vibes/GreatVibes-Regular.ttf");
 }
+@font-face {
+  font-family: "jost";
+  src: url("../fonts/Jost/Jost-VariableFont_wght.ttf");
+}
 $kaushan-font: "kaushan", cursive;
 $luxury-font: "luxury", cursive;
 $windsong-font: "windsong", cursive;
@@ -45,9 +49,11 @@ $montserrat-font: "montserrat";
 $allura-font: "allura", cursive;
 $vibes-font: "vibes", cursive;
 $alex-font: "alex", cursive;
+$jost-font: "jost", cursive;
 
 $primary: #977751;
 $primary-gold: #edba60;
+$body-black: #100f0f;
 
 * {
   margin: 0;
@@ -66,27 +72,60 @@ body {
   background-position: center;
   background-size: cover;
   display: flex;
-  align-items: center;
-  color: rgba(#ebdac5, 1);
+  align-items: flex-end;
+  color: rgba(#f0d8ad, 1);
+  .glass-card {
+    width: 50%;
+    height: 360px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    // border-radius: 20px;
+    // border: 1px solid rgba(255, 255, 255, 0.3);
+    // box-shadow:
+    //   0 8px 32px rgba(0, 0, 0, 0.1),
+    //   inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    //   inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    //   inset 0 0 20px 10px rgba(255, 255, 255, 1);
+    position: absolute;
+    overflow: hidden;
+    bottom: 0;
+    left: 25%;
+  }
+
   h1 {
     line-height: 0.88;
     font-size: clamp(48px, 7.2vw, 96px);
     letter-spacing: -2.5px;
-    span {
-      font-family: $vibes-font !important;
-      color: $primary-gold;
-      font-size: 0.82em;
-      margin-top: 0.06em;
-    }
+  }
+  h2 {
+    font-family: $alex-font !important;
+    color: $primary-gold;
+    font-size: clamp(48px, 7.2vw, 96px);
+    margin-top: -0.3em;
+    position: relative;
   }
 }
 
 .about-section {
   padding: 100px 0;
+  position: relative;
+  &::after {
+    content: "ABOUT US";
+    position: absolute;
+    right: 50;
+    top: 0;
+    color: $primary;
+    font-size: 150px;
+    opacity: 0.04;
+    font-weight: 1000;
+    // -webkit-text-stroke: 1px $primary;
+    // font-family: "Manrope", sans-serif;
+  }
   .image-section {
     position: relative;
     .img1 {
-      width: 70%;
+      width: 65%;
       height: auto;
     }
     .img2 {
@@ -106,6 +145,76 @@ body {
         border-top-left-radius: 20px;
         object-fit: cover;
       }
+    }
+  }
+  h2 {
+    letter-spacing: -3px;
+    color: $primary;
+    margin: 0;
+    font-size: clamp(48px, 5vw, 76px);
+    // font-weight: 600;
+    line-height: 0.92;
+    span {
+      color: $primary-gold;
+      font-family: $dancing-font;
+    }
+  }
+  p {
+    color: #202027;
+    margin-top: 20px;
+  }
+  .tags {
+    color: $primary-gold;
+    font-family: $dancing-font;
+    font-size: 30px;
+  }
+}
+
+.service-section {
+  background-color: $body-black;
+  .content {
+    padding: 50px 0;
+    h1 {
+      color: #f0d8ad;
+    }
+    p {
+      color: #eddec4;
+      margin: 30px 0;
+    }
+    ul {
+      padding: 0;
+      li {
+        color: #eddec4;
+        list-style-type: none;
+        border-top: 1px solid rgba(#eddec4, 0.1);
+        padding: 20px 0;
+        &:last-child {
+          border-bottom: 1px solid rgba(#eddec4, 0.1);
+        }
+        transition: 0.15s linear;
+        &:hover {
+          padding-left: 10px;
+        }
+      }
+    }
+  }
+  .img-section {
+    background:
+      linear-gradient(rgba(black, 0.8), rgba(black, 0.8)),
+      url("../images/misc/3.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    &::before {
+      content: "";
+      width: calc(100% - 60px);
+      height: calc(100% - 60px);
+      position: absolute;
+      border: 1px solid rgba(#eddec4, 0.2);
+      left: 30px;
+      top: 30px;
     }
   }
 }
