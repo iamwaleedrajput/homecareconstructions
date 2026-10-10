@@ -1,31 +1,32 @@
 import { Container } from "@mui/material";
+import Link from "next/link";
 import React from "react";
 
 export default function Hero() {
   return (
     <div className="hero-section">
-      {/* <div className="glass-card"></div> */}
-      {/* <div className="hero-section-img"></div> */}
       <Container>
-        <h1>
-          Designing Spaces
-          <br />
-        </h1>
-        <h2>building dreams</h2>
+        <div className="hero-content">
+          <p className="hero-brand">Home Care Constructions</p>
+          <h1>
+            Designing Spaces
+            <br />
+          </h1>
+          <h2>building dreams</h2>
+          <p className="hero-lead">
+            Thoughtful interiors and lasting builds — from first sketch to final
+            finish.
+          </p>
+          <div className="hero-actions">
+            <Link href="/contact-us" className="hero-btn hero-btn-primary">
+              Start a project
+            </Link>
+            <Link href="/gallery" className="hero-btn hero-btn-ghost">
+              View our work
+            </Link>
+          </div>
+        </div>
       </Container>
     </div>
   );
 }
-
-// .static-hero:before {
-//     position: absolute;
-//     right: 0;
-//     top: 0;
-//     width: 960px;
-//     height: 100%;
-//     content: "";
-//     background: #efeee8;
-//     border-top-left-radius: 50%;
-//     border-bottom-left-radius: 50%;
-//     z-index: -1;
-// }
