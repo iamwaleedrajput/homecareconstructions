@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./@assets/scss/style.scss";
+import "aos/dist/aos.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SplashScreen from "./components/SplashScreen";
+import AOSProvider from "./components/AOSProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://homecareconstructions.com"),
@@ -39,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en">
       <body>
         <SplashScreen />
+        <AOSProvider />
         <Navbar />
         {children}
         <Footer />

@@ -14,9 +14,7 @@ const PROJECT_TYPE_LABELS: Record<string, string> = {
 };
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
   const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
 
@@ -50,10 +48,10 @@ export default function ContactForm() {
     };
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
-    const { errors: nextErrors } = readForm(form);
+    const { errors: nextErrors, payload } = readForm(form);
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) {
@@ -73,15 +71,25 @@ export default function ContactForm() {
       return;
     }
 
-    setStatus("sending");
     setStatusMessage("");
 
     try {
-      // await sendContactMail(payload);
-      form.reset();
-      setErrors({});
+      const whatsappMessage = [
+        "Hello Home Care Constructions, I’d like to discuss a project.",
+        "",
+        `Name: ${payload.name}`,
+        `Mobile: ${payload.phone || "Not provided"}`,
+        `Email: ${payload.email}`,
+        `Project type: ${payload.projectTypeLabel}`,
+        `Project details: ${payload.message}`,
+      ].join("\n");
+      const whatsappUrl = `https://wa.me/923181552274?text=${encodeURIComponent(whatsappMessage)}`;
+
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
       setStatus("sent");
-      setStatusMessage("Thanks — we’ll be in touch shortly.");
+      setStatusMessage(
+        "WhatsApp opened with your inquiry. Review the message and tap Send to complete it.",
+      );
     } catch (err) {
       setStatus("error");
       setStatusMessage(
@@ -91,8 +99,6 @@ export default function ContactForm() {
       );
     }
   }
-
-  const submitting = status === "sending";
 
   return (
     <div className="contact-form-wrapper">
@@ -115,7 +121,6 @@ export default function ContactForm() {
             name="name"
             placeholder="Your full name"
             autoComplete="name"
-            disabled={submitting}
           />
           {errors.name ? (
             <span className="field-error">{errors.name}</span>
@@ -130,7 +135,6 @@ export default function ContactForm() {
             name="email"
             placeholder="you@example.com"
             autoComplete="email"
-            disabled={submitting}
           />
           {errors.email ? (
             <span className="field-error">{errors.email}</span>
@@ -145,7 +149,6 @@ export default function ContactForm() {
             name="phone"
             placeholder="+92 300 0000000"
             autoComplete="tel"
-            disabled={submitting}
           />
         </div>
 
@@ -155,7 +158,6 @@ export default function ContactForm() {
             id="contact-project-type"
             name="projectType"
             defaultValue=""
-            disabled={submitting}
           >
             <option value="" disabled>
               Select a project type
@@ -179,7 +181,6 @@ export default function ContactForm() {
             name="message"
             rows={4}
             placeholder="Tell us about your space, timeline, or budget..."
-            disabled={submitting}
           />
           {errors.message ? (
             <span className="field-error">{errors.message}</span>
@@ -196,8 +197,8 @@ export default function ContactForm() {
           </p>
         ) : null}
 
-        <button type="submit" className="contact-submit" disabled={submitting}>
-          <span>{submitting ? "SENDING…" : "START A CONVERSATION"}</span>
+        <button type="submit" className="contact-submit">
+          <span>SEND ON WHATSAPP</span>
           <span className="submit-arrow">↗</span>
         </button>
       </form>
