@@ -30,6 +30,9 @@ export default function Footer() {
                 <Link href="/gallery">Gallery</Link>
               </li>
               <li>
+                <Link href="/pricing">Pricing</Link>
+              </li>
+              <li>
                 <Link href="/contact-us">Contact us</Link>
               </li>
             </ul>
@@ -45,7 +48,9 @@ export default function Footer() {
                 </a>
               </p>
               <p>
-                <a href="tel:+923435278887">+92 343 5278887</a>
+                <a href="https://wa.me/923181552274" target="_blank" rel="noreferrer">
+                  03181552274
+                </a>
               </p>
             </div>
           </Grid>

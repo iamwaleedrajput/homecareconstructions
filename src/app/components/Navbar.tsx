@@ -12,6 +12,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/pricing", label: "Pricing" },
 ];
 
 export default function Navbar() {
@@ -83,7 +84,9 @@ export default function Navbar() {
             })}
 
             <div className="navbar-mobile-meta">
-              <a href="tel:+923435278887">+92 343 5278887</a>
+              <a href="https://wa.me/923181552274" target="_blank" rel="noreferrer">
+                03181552274
+              </a>
               <Link href="/contact-us" className="navbar-cta">
                 Start a project
               </Link>
@@ -91,8 +94,13 @@ export default function Navbar() {
           </nav>
 
           <div className="navbar-actions">
-            <a href="tel:+923435278887" className="navbar-phone">
-              +92 343 5278887
+            <a
+              href="https://wa.me/923181552274"
+              className="navbar-phone"
+              target="_blank"
+              rel="noreferrer"
+            >
+              03181552274
             </a>
             <Link href="/contact-us" className="navbar-cta">
               Start a project
