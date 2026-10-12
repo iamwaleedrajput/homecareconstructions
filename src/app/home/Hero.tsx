@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="hero-section" aria-labelledby="home-hero-title">
       <div className="hero-image-caption" aria-hidden="true">
-        <span>01</span> A HOME, MADE PERSONAL
+      A HOME, MADE PERSONAL
       </div>
       <Container>
         <div className="hero-layout">
