@@ -7,6 +7,7 @@ type FieldName = "name" | "email" | "phone" | "projectType" | "message";
 const PROJECT_TYPE_LABELS: Record<string, string> = {
   interior: "Interior Design",
   renovation: "Renovation & Remodeling",
+  kitchenRenovation: "Kitchen Renovation",
   construction: "New Construction",
   furniture: "Custom Furniture",
   consultation: "Design Consultation",
@@ -164,6 +165,7 @@ export default function ContactForm() {
             </option>
             <option value="interior">Interior Design</option>
             <option value="renovation">Renovation & Remodeling</option>
+            <option value="kitchenRenovation">Kitchen Renovation</option>
             <option value="construction">New Construction</option>
             <option value="furniture">Custom Furniture</option>
             <option value="consultation">Design Consultation</option>
