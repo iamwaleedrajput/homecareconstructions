@@ -13,6 +13,7 @@ const links = [
   { href: "/about", label: "About" },
   { href: "/gallery", label: "Gallery" },
   { href: "/pricing", label: "Pricing" },
+  { href: "/calculate-your-quote", label: "Quote calculator" },
 ];
 
 export default function Navbar() {
