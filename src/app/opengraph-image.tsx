@@ -1,11 +1,17 @@
 import { ImageResponse } from "next/og";
+import { getGlobal } from "@/lib/site";
 
-export const alt =
-  "Home Care Constructions — Premium Design, Build & Transform";
+export const alt = "Home Care Constructions — Premium Design, Build & Transform";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const global = await getGlobal();
+  const headline = global.seo.ogHeadline || "Thoughtful spaces.";
+  const highlight = global.seo.ogHighlight || "Built to last.";
+  const caption = global.seo.ogCaption || "Construction · Interiors · Modular Kitchens";
+  const footer = global.seo.ogFooter || global.splashTagline;
+
   return new ImageResponse(
     (
       <div
@@ -76,7 +82,7 @@ export default function OpenGraphImage() {
                 display: "flex",
               }}
             />
-            Home Care Constructions
+            {global.siteName}
           </div>
           <div
             style={{
@@ -89,8 +95,8 @@ export default function OpenGraphImage() {
               fontWeight: 500,
             }}
           >
-            <span>Thoughtful spaces.</span>
-            <span style={{ color: "#edba60" }}>Built to last.</span>
+            <span>{headline}</span>
+            <span style={{ color: "#edba60" }}>{highlight}</span>
           </div>
           <div
             style={{
@@ -100,7 +106,7 @@ export default function OpenGraphImage() {
               letterSpacing: 1,
             }}
           >
-            Construction · Interiors · Modular Kitchens
+            {caption}
           </div>
         </div>
         <div
@@ -116,8 +122,8 @@ export default function OpenGraphImage() {
             textTransform: "uppercase",
           }}
         >
-          <span>Design · Build · Transform</span>
-          <span>Rawalpindi, Pakistan</span>
+          <span>{footer}</span>
+          <span>{global.locationFull}</span>
         </div>
       </div>
     ),

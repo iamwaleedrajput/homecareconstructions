@@ -1,36 +1,44 @@
 import { Container } from "@mui/material";
 import Breadcrumb from "../components/Breadcrumb";
 import QuoteCalculator from "./QuoteCalculator";
+import Lines from "../components/Lines";
+import { getGlobal, getPricingPage, getQuotePage, pageMetadata } from "@/lib/site";
 
-export const metadata = {
-  title: "Calculate Your Kitchen Quote | Home Care Constructions",
-  description:
-    "Choose a kitchen package and enter your cabinet area to get an instant estimated price.",
-};
+export async function generateMetadata() {
+  const quote = await getQuotePage();
+  return pageMetadata(quote.seo);
+}
 
-export default function CalculateYourQuotePage() {
+export default async function CalculateYourQuotePage() {
+  const [quote, pricing, global] = await Promise.all([
+    getQuotePage(),
+    getPricingPage(),
+    getGlobal(),
+  ]);
+
   return (
     <div className="quote-calculator-page">
       <Breadcrumb
-        title="Calculate Your Quote"
-        subtitle="Choose your kitchen package and get a quick estimate for your space."
+        title={quote.breadcrumbTitle}
+        subtitle={quote.breadcrumbSubtitle}
+        label={global.siteName}
+        imageUrl={quote.heroImageUrl}
       />
       <main>
         <section className="quote-calculator-section">
           <Container>
             <div className="quote-calculator-intro">
-              <span className="section-eyebrow">YOUR KITCHEN, YOUR BUDGET</span>
-              <h2>
-                A clearer idea
-                <br />
-                <span>starts right here.</span>
-              </h2>
-              <p>
-                Get an instant estimate using our per-square-foot package rates.
-                Select an option and enter your cabinet area to see the total.
-              </p>
+              <span className="section-eyebrow">{quote.eyebrow}</span>
+              <Lines text={quote.title} highlight={quote.titleHighlight} />
+              <p>{quote.intro}</p>
             </div>
-            <QuoteCalculator />
+            <QuoteCalculator
+              content={quote}
+              packages={pricing.packages}
+              currency={pricing.currency}
+              priceUnit={pricing.priceUnit}
+              whatsappNumber={global.whatsappNumber}
+            />
           </Container>
         </section>
       </main>

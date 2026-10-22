@@ -1,42 +1,23 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
+import Lines from "../components/Lines";
+import type { TestimonialsContent } from "@/lib/site";
 
-const testimonials = [
-  {
-    quote:
-      "They understood exactly what we wanted and delivered a space that feels like us — beautiful and practical.",
-    name: "Ayesha Khan",
-    role: "Homeowner, Islamabad",
-  },
-  {
-    quote:
-      "From the first meeting to the final handover, communication was clear and the craftsmanship was outstanding.",
-    name: "Omar Farooq",
-    role: "Villa renovation, Rawalpindi",
-  },
-  {
-    quote:
-      "A true end-to-end partner. Design decisions were thoughtful and the build quality exceeded our expectations.",
-    name: "Sara Malik",
-    role: "Apartment remodel, Lahore",
-  },
-];
-
-export default function TestimonialsSection() {
+export default function TestimonialsSection({
+  content,
+}: {
+  content: TestimonialsContent;
+}) {
   return (
     <div className="testimonials-section">
       <Container>
         <div className="section-intro centered">
-          <span className="section-eyebrow">CLIENT STORIES</span>
-          <h2>
-            Trusted by families
-            <br />
-            <span>who care about craft</span>
-          </h2>
+          <span className="section-eyebrow">{content.eyebrow}</span>
+          <Lines text={content.title} highlight={content.titleHighlight} />
         </div>
         <Grid container spacing={4}>
-          {testimonials.map((item) => (
-            <Grid size={{ xs: 12, md: 4 }} key={item.name}>
+          {content.items.map((item, index) => (
+            <Grid size={{ xs: 12, md: 4 }} key={`${item.name}-${index}`}>
               <blockquote className="testimonial-card">
                 <p>&ldquo;{item.quote}&rdquo;</p>
                 <footer>

@@ -7,19 +7,14 @@ import Image from "next/image";
 import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { GlobalContent } from "@/lib/site";
+import { whatsappHref } from "@/lib/format";
 
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/calculate-your-quote", label: "Quote calculator" },
-];
-
-export default function Navbar() {
+export default function Navbar({ content }: { content: GlobalContent }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const phoneHref = whatsappHref(content.whatsappNumber);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,20 +49,20 @@ export default function Navbar() {
     >
       <Container>
         <div className="navbar-inner">
-          <Link
-            href="/"
-            className="navbar-brand"
-            aria-label="Home Care Constructions"
-          >
-            <Image src={logo} alt="" />
+          <Link href="/" className="navbar-brand" aria-label={content.siteName}>
+            {content.logoUrl ? (
+              <Image src={content.logoUrl} alt="" width={104} height={104} />
+            ) : (
+              <Image src={logo} alt="" />
+            )}
             <span className="navbar-wordmark">
-              Home Care
-              <small>Constructions</small>
+              {content.brandLine1}
+              <small>{content.brandLine2}</small>
             </span>
           </Link>
 
           <nav className={classNames("navbar-links", { isOpen: menuOpen })}>
-            {links.map((link) => {
+            {content.navLinks.map((link) => {
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
@@ -85,26 +80,21 @@ export default function Navbar() {
             })}
 
             <div className="navbar-mobile-meta">
-              <a href="https://wa.me/923181552274" target="_blank" rel="noreferrer">
-                03181552274
+              <a href={phoneHref} target="_blank" rel="noreferrer">
+                {content.phoneDisplay}
               </a>
-              <Link href="/contact-us" className="navbar-cta">
-                Start a project
+              <Link href={content.navCtaHref} className="navbar-cta">
+                {content.navCtaLabel}
               </Link>
             </div>
           </nav>
 
           <div className="navbar-actions">
-            <a
-              href="https://wa.me/923181552274"
-              className="navbar-phone"
-              target="_blank"
-              rel="noreferrer"
-            >
-              03181552274
+            <a href={phoneHref} className="navbar-phone" target="_blank" rel="noreferrer">
+              {content.phoneDisplay}
             </a>
-            <Link href="/contact-us" className="navbar-cta">
-              Start a project
+            <Link href={content.navCtaHref} className="navbar-cta">
+              {content.navCtaLabel}
             </Link>
           </div>
 

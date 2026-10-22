@@ -1,52 +1,76 @@
 import { Container } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import Lines from "../components/Lines";
+import type { HeroContent } from "@/lib/site";
 
-export default function Hero() {
+export default function Hero({ content }: { content: HeroContent }) {
   return (
-    <section className="hero-section" aria-labelledby="home-hero-title">
+    <section
+      className="hero-section"
+      aria-labelledby="home-hero-title"
+      style={
+        content.backgroundUrl
+          ? ({ "--hero-image": `url("${content.backgroundUrl}")` } as React.CSSProperties)
+          : undefined
+      }
+    >
       <div className="hero-image-caption" aria-hidden="true">
-      A HOME, MADE PERSONAL
+        {content.imageCaption}
       </div>
       <Container>
         <div className="hero-layout">
           <div className="hero-content">
-            <p className="hero-brand">Home Care Constructions <span>·</span> Rawalpindi</p>
-            <h1 id="home-hero-title">
-              Spaces made
-              <br />
-              <span>for living.</span>
-            </h1>
-            <p className="hero-script">Built with purpose.</p>
-            <p className="hero-lead">
-              Thoughtful interiors, bespoke kitchens, and lasting builds —
-              brought to life with care from the first sketch to the final
-              finish.
+            <p className="hero-brand">
+              {content.eyebrow.includes("·") ? (
+                <>
+                  {content.eyebrow.split("·")[0].trim()} <span>·</span>{" "}
+                  {content.eyebrow.split("·").slice(1).join("·").trim()}
+                </>
+              ) : (
+                content.eyebrow
+              )}
             </p>
+            <Lines
+              as="h1"
+              id="home-hero-title"
+              text={content.title}
+              highlight={content.titleHighlight}
+            />
+            <p className="hero-script">{content.script}</p>
+            <p className="hero-lead">{content.lead}</p>
             <div className="hero-actions">
-              <Link href="/contact-us" className="hero-btn hero-btn-primary">
-                Start a project <span aria-hidden="true">↗</span>
+              <Link href={content.primaryCtaHref} className="hero-btn hero-btn-primary">
+                {content.primaryCtaLabel} <span aria-hidden="true">↗</span>
               </Link>
-              <Link href="/pricing" className="hero-btn hero-btn-ghost">
-                Explore kitchen pricing
+              <Link href={content.secondaryCtaHref} className="hero-btn hero-btn-ghost">
+                {content.secondaryCtaLabel}
               </Link>
             </div>
             <div className="hero-trust-note">
-              <span className="hero-trust-mark" aria-hidden="true">HC</span>
-              <span>Designed with intention.<br /><strong>Made to last.</strong></span>
+              <span className="hero-trust-mark" aria-hidden="true">
+                {content.trustMark}
+              </span>
+              <span>
+                {content.trustText}
+                <br />
+                <strong>{content.trustEmphasis}</strong>
+              </span>
             </div>
           </div>
 
-          <div className="hero-side-note" aria-label="Design, build, and transform">
+          <div className="hero-side-note" aria-label={content.sideWords.join(", ")}>
             <span className="hero-side-rule" />
-            <span>DESIGN</span>
-            <span>BUILD</span>
-            <span>TRANSFORM</span>
+            {content.sideWords.map((word, index) => (
+              <span key={`${word}-${index}`}>{word}</span>
+            ))}
           </div>
         </div>
         <div className="hero-bottomline" aria-hidden="true">
-          <span>Considered details. Enduring spaces.</span>
-          <span className="hero-scroll-cue">SCROLL TO EXPLORE <i>↓</i></span>
+          <span>{content.bottomLine}</span>
+          <span className="hero-scroll-cue">
+            {content.scrollCue} <i>↓</i>
+          </span>
         </div>
       </Container>
     </section>

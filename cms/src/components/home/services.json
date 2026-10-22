@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_home_servicess",
+  "info": {
+    "displayName": "Services",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "text"
+    },
+    "titleHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "intro": {
+      "type": "text"
+    },
+    "ctaLabel": {
+      "type": "string",
+      "required": false
+    },
+    "ctaHref": {
+      "type": "string",
+      "required": false
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.titled-item"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "kind": "singleType",
+  "collectionName": "gallery_pages",
+  "info": {
+    "singularName": "gallery-page",
+    "pluralName": "gallery-pages",
+    "displayName": "Gallery page",
+    "description": "Gallery page content edited in Strapi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "breadcrumbTitle": {
+      "type": "string",
+      "required": false
+    },
+    "breadcrumbSubtitle": {
+      "type": "text"
+    },
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "text"
+    },
+    "titleHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "intro": {
+      "type": "text"
+    },
+    "meta": {
+      "type": "component",
+      "repeatable": true,
+      "component": "gallery.meta"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "gallery.item"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

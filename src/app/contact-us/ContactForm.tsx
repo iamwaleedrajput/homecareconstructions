@@ -1,23 +1,21 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import type { ContactContent } from "@/lib/site";
+import { whatsappHref } from "@/lib/format";
 
-type FieldName = "name" | "email" | "phone" | "projectType" | "message";
-
-const PROJECT_TYPE_LABELS: Record<string, string> = {
-  interior: "Interior Design",
-  renovation: "Renovation & Remodeling",
-  kitchenRenovation: "Kitchen Renovation",
-  construction: "New Construction",
-  furniture: "Custom Furniture",
-  consultation: "Design Consultation",
-  other: "Other",
-};
-
-export default function ContactForm() {
+export default function ContactForm({
+  content,
+  whatsappNumber,
+}: {
+  content: ContactContent;
+  whatsappNumber: string;
+}) {
   const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
   const [statusMessage, setStatusMessage] = useState("");
-  const [errors, setErrors] = useState<Partial<Record<FieldName, string>>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<"name" | "email" | "projectType" | "message", string>>
+  >({});
 
   function readForm(form: HTMLFormElement) {
     const data = new FormData(form);
@@ -26,26 +24,22 @@ export default function ContactForm() {
     const phone = String(data.get("phone") ?? "").trim();
     const projectType = String(data.get("projectType") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
-    const nextErrors: Partial<Record<FieldName, string>> = {};
+    const nextErrors: Partial<Record<"name" | "email" | "projectType" | "message", string>> =
+      {};
 
-    if (name.length < 2) nextErrors.name = "Please enter your name.";
+    if (name.length < 2) nextErrors.name = content.nameError;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      nextErrors.email = "Please enter a valid email.";
+      nextErrors.email = content.emailError;
     }
-    if (!projectType) nextErrors.projectType = "Please select a project type.";
-    if (message.length < 10) {
-      nextErrors.message = "Tell us a little more (at least 10 characters).";
-    }
+    if (!projectType) nextErrors.projectType = content.projectError;
+    if (message.length < 10) nextErrors.message = content.messageError;
+
+    const projectTypeLabel =
+      content.projectTypes.find((type) => type.value === projectType)?.label ?? projectType;
 
     return {
       errors: nextErrors,
-      payload: {
-        name,
-        email,
-        phone,
-        projectTypeLabel: PROJECT_TYPE_LABELS[projectType] ?? projectType,
-        message,
-      },
+      payload: { name, email, phone, projectTypeLabel, message },
     };
   }
 
@@ -61,14 +55,12 @@ export default function ContactForm() {
       return;
     }
 
-    const honey = form.querySelector<HTMLInputElement>(
-      'input[name="botcheck"]',
-    );
+    const honey = form.querySelector<HTMLInputElement>('input[name="botcheck"]');
     if (honey?.checked) {
       form.reset();
       setErrors({});
       setStatus("sent");
-      setStatusMessage("Thanks — we’ll be in touch shortly.");
+      setStatusMessage(content.honeypotMessage);
       return;
     }
 
@@ -76,7 +68,7 @@ export default function ContactForm() {
 
     try {
       const whatsappMessage = [
-        "Hello Home Care Constructions, I’d like to discuss a project.",
+        content.whatsappIntro,
         "",
         `Name: ${payload.name}`,
         `Mobile: ${payload.phone || "Not provided"}`,
@@ -84,26 +76,19 @@ export default function ContactForm() {
         `Project type: ${payload.projectTypeLabel}`,
         `Project details: ${payload.message}`,
       ].join("\n");
-      const whatsappUrl = `https://wa.me/923181552274?text=${encodeURIComponent(whatsappMessage)}`;
 
-      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+      window.open(whatsappHref(whatsappNumber, whatsappMessage), "_blank", "noopener,noreferrer");
       setStatus("sent");
-      setStatusMessage(
-        "WhatsApp opened with your inquiry. Review the message and tap Send to complete it.",
-      );
+      setStatusMessage(content.successMessage);
     } catch (err) {
       setStatus("error");
-      setStatusMessage(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again.",
-      );
+      setStatusMessage(err instanceof Error ? err.message : content.errorMessage);
     }
   }
 
   return (
     <div className="contact-form-wrapper">
-      <div className="contact-form-number">CONTACT</div>
+      <div className="contact-form-number">{content.formEyebrow}</div>
 
       <form className="contact-form" noValidate onSubmit={handleSubmit}>
         <input
@@ -115,61 +100,51 @@ export default function ContactForm() {
         />
 
         <div className={`form-field${errors.name ? " is-invalid" : ""}`}>
-          <label htmlFor="contact-name">01 — YOUR NAME</label>
+          <label htmlFor="contact-name">{content.nameLabel}</label>
           <input
             id="contact-name"
             type="text"
             name="name"
-            placeholder="Your full name"
+            placeholder={content.namePlaceholder}
             autoComplete="name"
           />
-          {errors.name ? (
-            <span className="field-error">{errors.name}</span>
-          ) : null}
+          {errors.name ? <span className="field-error">{errors.name}</span> : null}
         </div>
 
         <div className={`form-field${errors.email ? " is-invalid" : ""}`}>
-          <label htmlFor="contact-email">02 — EMAIL ADDRESS</label>
+          <label htmlFor="contact-email">{content.emailLabel}</label>
           <input
             id="contact-email"
             type="email"
             name="email"
-            placeholder="you@example.com"
+            placeholder={content.emailPlaceholder}
             autoComplete="email"
           />
-          {errors.email ? (
-            <span className="field-error">{errors.email}</span>
-          ) : null}
+          {errors.email ? <span className="field-error">{errors.email}</span> : null}
         </div>
 
         <div className="form-field">
-          <label htmlFor="contact-phone">03 — PHONE</label>
+          <label htmlFor="contact-phone">{content.phoneLabel}</label>
           <input
             id="contact-phone"
             type="tel"
             name="phone"
-            placeholder="+92 300 0000000"
+            placeholder={content.phonePlaceholder}
             autoComplete="tel"
           />
         </div>
 
         <div className={`form-field${errors.projectType ? " is-invalid" : ""}`}>
-          <label htmlFor="contact-project-type">04 — PROJECT TYPE</label>
-          <select
-            id="contact-project-type"
-            name="projectType"
-            defaultValue=""
-          >
+          <label htmlFor="contact-project-type">{content.projectLabel}</label>
+          <select id="contact-project-type" name="projectType" defaultValue="">
             <option value="" disabled>
-              Select a project type
+              {content.projectPlaceholder}
             </option>
-            <option value="interior">Interior Design</option>
-            <option value="renovation">Renovation & Remodeling</option>
-            <option value="kitchenRenovation">Kitchen Renovation</option>
-            <option value="construction">New Construction</option>
-            <option value="furniture">Custom Furniture</option>
-            <option value="consultation">Design Consultation</option>
-            <option value="other">Other</option>
+            {content.projectTypes.map((type) => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
           </select>
           {errors.projectType ? (
             <span className="field-error">{errors.projectType}</span>
@@ -177,16 +152,14 @@ export default function ContactForm() {
         </div>
 
         <div className={`form-field${errors.message ? " is-invalid" : ""}`}>
-          <label htmlFor="contact-message">05 — TELL US MORE</label>
+          <label htmlFor="contact-message">{content.messageLabel}</label>
           <textarea
             id="contact-message"
             name="message"
             rows={4}
-            placeholder="Tell us about your space, timeline, or budget..."
+            placeholder={content.messagePlaceholder}
           />
-          {errors.message ? (
-            <span className="field-error">{errors.message}</span>
-          ) : null}
+          {errors.message ? <span className="field-error">{errors.message}</span> : null}
         </div>
 
         {statusMessage ? (
@@ -200,7 +173,7 @@ export default function ContactForm() {
         ) : null}
 
         <button type="submit" className="contact-submit">
-          <span>SEND ON WHATSAPP</span>
+          <span>{content.submitLabel}</span>
           <span className="submit-arrow">↗</span>
         </button>
       </form>

@@ -1,35 +1,25 @@
 import { Container, Grid } from "@mui/material";
 import React from "react";
+import Lines from "../components/Lines";
+import type { TitledItem } from "@/lib/site";
 
-const values = [
-  {
-    title: "Integrity",
-    description:
-      "Honest guidance on scope, cost, and timeline — no surprises along the way.",
-  },
-  {
-    title: "Craft",
-    description:
-      "Every joint, finish, and detail is treated as part of the finished story.",
-  },
-  {
-    title: "Collaboration",
-    description:
-      "Your taste and our expertise work together from the first conversation.",
-  },
-];
-
-export default function ValuesSection() {
+export default function ValuesSection({
+  eyebrow,
+  title,
+  highlight,
+  values,
+}: {
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  values: TitledItem[];
+}) {
   return (
     <div className="values-section">
       <Container>
         <div className="section-intro centered">
-          <span className="section-eyebrow">WHAT DRIVES US</span>
-          <h2>
-            Principles behind
-            <br />
-            <span>every build</span>
-          </h2>
+          <span className="section-eyebrow">{eyebrow}</span>
+          <Lines text={title} highlight={highlight} />
         </div>
         <Grid container spacing={4}>
           {values.map((value) => (

@@ -1,65 +1,62 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import type { KitchenPackage, QuoteContent } from "@/lib/site";
+import { formatPrice, whatsappHref } from "@/lib/format";
 
-const pricingOptions = [
-  {
-    name: "Standard",
-    description: "Modern essentials and dependable materials.",
-    price: 2500,
-  },
-  {
-    name: "Premium",
-    description: "Enhanced storage, premium hardware, and lighting.",
-    price: 3000,
-    featured: true,
-  },
-  {
-    name: "Luxury",
-    description: "Upgraded panels, pantry tower, and sensor lighting.",
-    price: 3500,
-  },
-];
-
-const formatPrice = (amount: number) =>
-  new Intl.NumberFormat("en-PK", {
-    maximumFractionDigits: 2,
-  }).format(amount);
-
-export default function QuoteCalculator() {
-  const [selectedPackage, setSelectedPackage] = useState("Premium");
+export default function QuoteCalculator({
+  content,
+  packages,
+  currency,
+  priceUnit,
+  whatsappNumber,
+}: {
+  content: QuoteContent;
+  packages: KitchenPackage[];
+  currency: string;
+  priceUnit: string;
+  whatsappNumber: string;
+}) {
+  const initial =
+    packages.find((option) => option.name === content.defaultPackage)?.name ??
+    packages.find((option) => option.featured)?.name ??
+    packages[0]?.name ??
+    "";
+  const [selectedPackage, setSelectedPackage] = useState(initial);
   const [cabinetArea, setCabinetArea] = useState("");
 
   const chosenPackage =
-    pricingOptions.find((option) => option.name === selectedPackage) ??
-    pricingOptions[1];
+    packages.find((option) => option.name === selectedPackage) ?? packages[0];
   const area = Number(cabinetArea);
   const estimate = useMemo(
-    () => (Number.isFinite(area) && area > 0 ? area * chosenPackage.price : 0),
-    [area, chosenPackage.price],
+    () =>
+      chosenPackage && Number.isFinite(area) && area > 0
+        ? area * chosenPackage.pricePerSqFt
+        : 0,
+    [area, chosenPackage],
   );
-  const quoteMessage = encodeURIComponent(
-    [
-      "Hi, I used the online kitchen quote calculator.",
-      `Package: ${chosenPackage.name}`,
-      `Cabinet area: ${cabinetArea || "not entered"} sq. ft.`,
-      `Estimated package total: PKR ${formatPrice(estimate)}`,
-      "Please help me confirm the final quotation.",
-    ].join("\n"),
-  );
+  const quoteMessage = [
+    content.whatsappIntro,
+    `${content.messagePackageLabel}: ${chosenPackage?.name ?? ""}`,
+    `${content.messageAreaLabel}: ${cabinetArea || content.messageAreaMissing} ${content.areaUnit}`,
+    `${content.messageTotalLabel}: ${currency} ${formatPrice(estimate)}`,
+    content.messageClosing,
+  ].join("\n");
+
+  if (!chosenPackage) return null;
 
   return (
     <div className="quote-calculator-layout">
       <section className="quote-calculator-form" aria-labelledby="quote-form-title">
         <div className="quote-calculator-section-heading">
-          <span className="section-eyebrow">01 / CHOOSE YOUR PACKAGE</span>
-          <h2 id="quote-form-title">Start with the right fit.</h2>
-          <p>Select a finish, then enter the measured cabinet area in square feet.</p>
+          <span className="section-eyebrow">{content.stepOneEyebrow}</span>
+          <h2 id="quote-form-title">{content.stepOneTitle}</h2>
+          <p>{content.stepOneBody}</p>
         </div>
 
         <fieldset className="quote-package-options">
           <legend className="visually-hidden">Kitchen package</legend>
-          {pricingOptions.map((option) => (
+          {packages.map((option) => (
             <label
               className={`quote-package-option${selectedPackage === option.name ? " is-selected" : ""}${option.featured ? " is-featured" : ""}`}
               key={option.name}
@@ -74,21 +71,25 @@ export default function QuoteCalculator() {
               <span className="quote-option-check" aria-hidden="true" />
               <span className="quote-option-copy">
                 <strong>{option.name}</strong>
-                <small>{option.description}</small>
+                <small>{option.calculatorDescription}</small>
               </span>
               <span className="quote-option-price">
-                <strong>{formatPrice(option.price)}</strong>
-                <small>PKR / sq. ft.</small>
+                <strong>{formatPrice(option.pricePerSqFt)}</strong>
+                <small>
+                  {currency} {priceUnit}
+                </small>
               </span>
-              {option.featured ? <span className="quote-option-badge">POPULAR</span> : null}
+              {option.featured ? (
+                <span className="quote-option-badge">{content.popularBadge}</span>
+              ) : null}
             </label>
           ))}
         </fieldset>
 
         <div className="quote-area-field">
           <label htmlFor="cabinet-area">
-            <span className="section-eyebrow">02 / ENTER CABINET AREA</span>
-            <strong>Your measured cabinet area</strong>
+            <span className="section-eyebrow">{content.stepTwoEyebrow}</span>
+            <strong>{content.stepTwoLabel}</strong>
           </label>
           <div className="quote-area-input-wrap">
             <input
@@ -98,50 +99,52 @@ export default function QuoteCalculator() {
               min="1"
               step="0.5"
               inputMode="decimal"
-              placeholder="e.g. 120"
+              placeholder={content.areaPlaceholder}
               value={cabinetArea}
               onChange={(event) => setCabinetArea(event.target.value)}
             />
-            <span>sq. ft.</span>
+            <span>{content.areaUnit}</span>
           </div>
-          <p>Enter the total area of the cabinets you want us to build.</p>
+          <p>{content.stepTwoHelp}</p>
         </div>
       </section>
 
       <aside className="quote-estimate-card" aria-live="polite">
-        <span className="section-eyebrow light">YOUR INSTANT ESTIMATE</span>
-        <h2>Made for your space.</h2>
+        <span className="section-eyebrow light">{content.estimateEyebrow}</span>
+        <h2>{content.estimateTitle}</h2>
         <div className="quote-estimate-details">
           <div>
-            <span>Package</span>
+            <span>{content.labelPackage}</span>
             <strong>{chosenPackage.name}</strong>
           </div>
           <div>
-            <span>Rate</span>
-            <strong>PKR {formatPrice(chosenPackage.price)} <small>/ sq. ft.</small></strong>
+            <span>{content.labelRate}</span>
+            <strong>
+              {currency} {formatPrice(chosenPackage.pricePerSqFt)} <small>{priceUnit}</small>
+            </strong>
           </div>
           <div>
-            <span>Cabinet area</span>
-            <strong>{cabinetArea && area > 0 ? `${formatPrice(area)} sq. ft.` : "—"}</strong>
+            <span>{content.labelArea}</span>
+            <strong>
+              {cabinetArea && area > 0 ? `${formatPrice(area)} ${content.areaUnit}` : "—"}
+            </strong>
           </div>
         </div>
         <div className="quote-estimate-total">
-          <span>Estimated package total</span>
-          <strong>PKR {formatPrice(estimate)}</strong>
+          <span>{content.labelTotal}</span>
+          <strong>
+            {currency} {formatPrice(estimate)}
+          </strong>
         </div>
         <a
           className="quote-estimate-cta"
-          href={`https://wa.me/923181552274?text=${quoteMessage}`}
+          href={whatsappHref(whatsappNumber, quoteMessage)}
           target="_blank"
           rel="noreferrer"
         >
-          Confirm your estimate <span aria-hidden="true">↗</span>
+          {content.ctaLabel} <span aria-hidden="true">↗</span>
         </a>
-        <p className="quote-estimate-disclaimer">
-          This is an initial estimate based on package rate × cabinet area. Final
-          pricing may vary after site measurement; optional appliances and
-          countertop work are quoted separately.
-        </p>
+        <p className="quote-estimate-disclaimer">{content.disclaimer}</p>
       </aside>
     </div>
   );

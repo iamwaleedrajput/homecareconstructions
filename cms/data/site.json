@@ -1,0 +1,677 @@
+{
+  "global": {
+    "siteName": "Home Care Constructions",
+    "brandLine1": "Home Care",
+    "brandLine2": "Constructions",
+    "locationShort": "Rawalpindi",
+    "locationFull": "Rawalpindi, Pakistan",
+    "phoneDisplay": "03181552274",
+    "whatsappNumber": "923181552274",
+    "email": "hello@homecareconstructions.com",
+    "address": "Rawalpindi, Pakistan",
+    "footerBlurb": "Designers, builders, and craftsmen — turning ideas into lasting spaces with precision, care, and timeless detail.",
+    "footerTagline": "Design. Build. Transform.",
+    "footerExploreHeading": "Explore",
+    "footerContactHeading": "Get in touch",
+    "copyrightSuffix": "All rights reserved.",
+    "splashTagline": "Design · Build · Transform",
+    "navCtaLabel": "Start a project",
+    "navCtaHref": "/contact-us",
+    "navLinks": [
+      { "label": "Home", "href": "/" },
+      { "label": "About", "href": "/about" },
+      { "label": "Gallery", "href": "/gallery" },
+      { "label": "Pricing", "href": "/pricing" },
+      { "label": "Quote calculator", "href": "/calculate-your-quote" }
+    ],
+    "footerLinks": [
+      { "label": "Homepage", "href": "/" },
+      { "label": "About us", "href": "/about" },
+      { "label": "Gallery", "href": "/gallery" },
+      { "label": "Pricing", "href": "/pricing" },
+      { "label": "Contact us", "href": "/contact-us" }
+    ],
+    "seo": {
+      "metaTitle": "Home Care Constructions | Design, Build & Transform",
+      "metaDescription": "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan. Designed and built with precision, care, and timeless detail.",
+      "ogTitle": "Home Care Constructions | Design, Build & Transform",
+      "ogDescription": "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan. Designed and built with precision, care, and timeless detail.",
+      "ogHeadline": "Thoughtful spaces.",
+      "ogHighlight": "Built to last.",
+      "ogCaption": "Construction · Interiors · Modular Kitchens",
+      "ogFooter": "Design · Build · Transform"
+    }
+  },
+  "homePage": {
+    "hero": {
+      "eyebrow": "Home Care Constructions · Rawalpindi",
+      "title": "Spaces made",
+      "titleHighlight": "for living.",
+      "script": "Built with purpose.",
+      "lead": "Thoughtful interiors, bespoke kitchens, and lasting builds — brought to life with care from the first sketch to the final finish.",
+      "primaryCtaLabel": "Start a project",
+      "primaryCtaHref": "/contact-us",
+      "secondaryCtaLabel": "Explore kitchen pricing",
+      "secondaryCtaHref": "/pricing",
+      "trustMark": "HC",
+      "trustText": "Designed with intention.",
+      "trustEmphasis": "Made to last.",
+      "imageCaption": "A HOME, MADE PERSONAL",
+      "bottomLine": "Considered details. Enduring spaces.",
+      "scrollCue": "SCROLL TO EXPLORE",
+      "sideWords": [
+        { "text": "DESIGN" },
+        { "text": "BUILD" },
+        { "text": "TRANSFORM" }
+      ]
+    },
+    "about": {
+      "eyebrow": "ABOUT US",
+      "title": "Envision.\nCreate.",
+      "titleHighlight": "Transform",
+      "paragraphOne": "We transform spaces into thoughtfully designed environments that reflect your style, inspire everyday living, and stand the test of time.",
+      "paragraphTwo": "From concept to completion, we bring your vision to life with creativity, precision, and craftsmanship.",
+      "linkLabel": "Learn more about us",
+      "linkHref": "/about",
+      "badgeValue": "15+",
+      "badgeLabel": "Years of craft",
+      "mainImageAlt": "Completed interior by Home Care Constructions",
+      "insetImageAlt": "Craftsmanship and finish detail",
+      "facts": [
+        { "title": "Design", "subtitle": "Interiors with intent", "description": "" },
+        { "title": "Build", "subtitle": "Execution you can trust", "description": "" }
+      ]
+    },
+    "process": {
+      "eyebrow": "HOW WE WORK",
+      "title": "A clear path",
+      "titleHighlight": "from idea to home",
+      "steps": [
+        {
+          "title": "Consult",
+          "subtitle": "",
+          "description": "We listen to your vision, understand how you live, and define goals that balance beauty, comfort, and budget."
+        },
+        {
+          "title": "Design",
+          "subtitle": "",
+          "description": "Concepts become detailed plans — layouts, materials, and finishes shaped with clarity and purpose."
+        },
+        {
+          "title": "Build",
+          "subtitle": "",
+          "description": "Expert execution, quality materials, and careful craftsmanship take every detail from foundation to final finish."
+        }
+      ]
+    },
+    "services": {
+      "eyebrow": "WHAT WE OFFER",
+      "title": "Services that",
+      "titleHighlight": "shape every space",
+      "intro": "Design, planning, and construction — handled as one process so your project stays clear from first idea to final handover.",
+      "ctaLabel": "Discuss your project",
+      "ctaHref": "/contact-us",
+      "items": [
+        {
+          "title": "Interior Design",
+          "subtitle": "",
+          "description": "Spaces shaped around your lifestyle — balanced, beautiful, and built to feel like home."
+        },
+        {
+          "title": "Space Planning",
+          "subtitle": "",
+          "description": "Smart layouts that improve flow, light, and everyday function before a single wall moves."
+        },
+        {
+          "title": "3D Visualization",
+          "subtitle": "",
+          "description": "See finishes, furniture, and proportions clearly so decisions feel confident, not guessed."
+        },
+        {
+          "title": "Custom Furniture",
+          "subtitle": "",
+          "description": "Bespoke pieces tailored to your rooms — measured, crafted, and finished to last."
+        },
+        {
+          "title": "Renovation & Remodeling",
+          "subtitle": "",
+          "description": "From kitchens to full-home refreshes — thoughtful upgrades with careful site execution."
+        },
+        {
+          "title": "Construction & Execution",
+          "subtitle": "",
+          "description": "Quality build-out from foundation to final finish, managed with precision and care."
+        }
+      ]
+    },
+    "featured": {
+      "eyebrow": "SELECTED WORK",
+      "title": "Featured",
+      "titleHighlight": "projects",
+      "linkLabel": "Browse full gallery",
+      "linkHref": "/gallery",
+      "projects": [
+        {
+          "title": "Modern Living Suite",
+          "description": "Warm interiors with clean lines and lasting materials.",
+          "alt": "Modern Living Suite"
+        },
+        {
+          "title": "Open Kitchen Renovation",
+          "description": "A brighter, more functional heart of the home.",
+          "alt": "Open Kitchen Renovation"
+        },
+        {
+          "title": "Full Home Remodel",
+          "description": "Design and build, coordinated end to end.",
+          "alt": "Full Home Remodel"
+        }
+      ]
+    },
+    "why": {
+      "eyebrow": "WHY US",
+      "title": "Built on trust,",
+      "titleHighlight": "finished with care",
+      "items": [
+        {
+          "title": "One team, end to end",
+          "subtitle": "",
+          "description": "Design and construction under one roof — fewer handoffs, clearer accountability, better results."
+        },
+        {
+          "title": "Detail-driven craft",
+          "subtitle": "",
+          "description": "Materials, finishes, and joinery chosen with care so every space feels considered and lasting."
+        },
+        {
+          "title": "Transparent process",
+          "subtitle": "",
+          "description": "Clear timelines, honest budgets, and regular updates so you always know where things stand."
+        },
+        {
+          "title": "Built around how you live",
+          "subtitle": "",
+          "description": "We design for real routines — not just photos — so your home works as beautifully as it looks."
+        }
+      ]
+    },
+    "testimonials": {
+      "eyebrow": "CLIENT STORIES",
+      "title": "Trusted by families",
+      "titleHighlight": "who care about craft",
+      "items": [
+        {
+          "quote": "They understood exactly what we wanted and delivered a space that feels like us — beautiful and practical.",
+          "name": "Ayesha Khan",
+          "role": "Homeowner, Islamabad"
+        },
+        {
+          "quote": "From the first meeting to the final handover, communication was clear and the craftsmanship was outstanding.",
+          "name": "Omar Farooq",
+          "role": "Villa renovation, Rawalpindi"
+        },
+        {
+          "quote": "A true end-to-end partner. Design decisions were thoughtful and the build quality exceeded our expectations.",
+          "name": "Sara Malik",
+          "role": "Apartment remodel, Lahore"
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "NEXT STEP",
+      "title": "Have a project in mind?",
+      "body": "Tell us what you're envisioning — we'll help shape it into reality.",
+      "ctaLabel": "Contact Us",
+      "ctaHref": "/contact-us"
+    }
+  },
+  "aboutPage": {
+    "breadcrumbTitle": "About",
+    "breadcrumbSubtitle": "Designers and builders shaping spaces that last.",
+    "story": {
+      "eyebrow": "OUR STORY",
+      "title": "Building homes\nwith purpose",
+      "titleHighlight": "& precision",
+      "paragraphOne": "Home Care Constructions began with a simple belief: a well-built space should feel as considered as it looks. We bring design and construction together so every decision — from layout to finish — serves how you live.",
+      "paragraphTwo": "Our team works closely with homeowners and businesses across the region, turning ideas into spaces that are durable, beautiful, and uniquely yours.",
+      "captionStrong": "Est. craft",
+      "captionSpan": "Design to build",
+      "mainImageAlt": "Completed home interior by Home Care Constructions",
+      "secondaryImageAlt": "Detail of craftsmanship and finishes",
+      "accentImageAlt": "Architectural interior detail",
+      "points": [
+        { "text": "Design & build under one roof" },
+        { "text": "Clear communication at every stage" },
+        { "text": "Craftsmanship that stands the test of time" }
+      ]
+    },
+    "valuesEyebrow": "WHAT DRIVES US",
+    "valuesTitle": "Principles behind",
+    "valuesHighlight": "every build",
+    "values": [
+      {
+        "title": "Integrity",
+        "subtitle": "",
+        "description": "Honest guidance on scope, cost, and timeline — no surprises along the way."
+      },
+      {
+        "title": "Craft",
+        "subtitle": "",
+        "description": "Every joint, finish, and detail is treated as part of the finished story."
+      },
+      {
+        "title": "Collaboration",
+        "subtitle": "",
+        "description": "Your taste and our expertise work together from the first conversation."
+      }
+    ],
+    "stats": [
+      {
+        "title": "150",
+        "subtitle": "Happy Clients",
+        "description": "Building lasting relationships"
+      },
+      {
+        "title": "200",
+        "subtitle": "Projects Completed",
+        "description": "Ideas brought to life"
+      },
+      {
+        "title": "50",
+        "subtitle": "Skilled Workers",
+        "description": "Craftsmanship you can trust"
+      }
+    ],
+    "why": {
+      "eyebrow": "WHY US",
+      "title": "Built on trust,",
+      "titleHighlight": "finished with care",
+      "items": [
+        {
+          "title": "One team, end to end",
+          "subtitle": "",
+          "description": "Design and construction under one roof — fewer handoffs, clearer accountability, better results."
+        },
+        {
+          "title": "Detail-driven craft",
+          "subtitle": "",
+          "description": "Materials, finishes, and joinery chosen with care so every space feels considered and lasting."
+        },
+        {
+          "title": "Transparent process",
+          "subtitle": "",
+          "description": "Clear timelines, honest budgets, and regular updates so you always know where things stand."
+        },
+        {
+          "title": "Built around how you live",
+          "subtitle": "",
+          "description": "We design for real routines — not just photos — so your home works as beautifully as it looks."
+        }
+      ]
+    },
+    "cta": {
+      "eyebrow": "NEXT STEP",
+      "title": "Have a project in mind?",
+      "body": "Tell us what you're envisioning — we'll help shape it into reality.",
+      "ctaLabel": "Contact Us",
+      "ctaHref": "/contact-us"
+    },
+    "seo": {
+      "metaTitle": "About | Home Care Constructions",
+      "metaDescription": "Designers and builders shaping spaces that last. Home Care Constructions brings design and construction together in Rawalpindi, Pakistan.",
+      "ogTitle": "About Home Care Constructions",
+      "ogDescription": "Designers and builders shaping spaces that last.",
+      "ogHeadline": "",
+      "ogHighlight": "",
+      "ogCaption": "",
+      "ogFooter": ""
+    }
+  },
+  "galleryPage": {
+    "breadcrumbTitle": "Gallery",
+    "breadcrumbSubtitle": "A look at spaces we've designed, built, and refined.",
+    "eyebrow": "OUR WORK",
+    "title": "Spaces that",
+    "titleHighlight": "speak for themselves",
+    "intro": "From thoughtful interiors to complete renovations, we transform ideas into environments that inspire and elevate everyday living.",
+    "meta": [
+      { "title": "Interiors", "subtitle": "Living, kitchen, suite" },
+      { "title": "Build", "subtitle": "Renovation to finish" },
+      { "title": "Detail", "subtitle": "Joinery & materials" }
+    ],
+    "items": [
+      { "title": "Bed", "alt": "Bed" },
+      { "title": "Kitchen", "alt": "Kitchen" },
+      { "title": "Sink", "alt": "Sink" },
+      { "title": "Books", "alt": "Books" },
+      { "title": "Bed", "alt": "Bed" },
+      { "title": "Kitchen", "alt": "Kitchen" },
+      { "title": "Sink", "alt": "Sink" },
+      { "title": "Books", "alt": "Books" },
+      { "title": "Bed", "alt": "Bed" },
+      { "title": "Kitchen", "alt": "Kitchen" },
+      { "title": "Sink", "alt": "Sink" },
+      { "title": "Books", "alt": "Books" }
+    ],
+    "seo": {
+      "metaTitle": "Gallery | Home Care Constructions",
+      "metaDescription": "A look at spaces we've designed, built, and refined.",
+      "ogTitle": "Gallery | Home Care Constructions",
+      "ogDescription": "Spaces we've designed, built, and refined.",
+      "ogHeadline": "",
+      "ogHighlight": "",
+      "ogCaption": "",
+      "ogFooter": ""
+    }
+  },
+  "pricingPage": {
+    "breadcrumbTitle": "Pricing",
+    "breadcrumbSubtitle": "Thoughtful design, precision-made cabinetry, and a package for every home.",
+    "eyebrow": "MADE FOR YOUR HOME",
+    "title": "The right kitchen,",
+    "titleHighlight": "beautifully made.",
+    "intro": "Explore three modular kitchen packages to suit different budgets and requirements. Every kitchen is manufactured with precision machinery, premium hardware, and professional installation.",
+    "unitNotePrimary": "Clear, per-square-foot pricing",
+    "unitNoteSecondary": "PKR / sq. ft.",
+    "currency": "PKR",
+    "priceUnit": "/ sq. ft.",
+    "pricingNote": "Package pricing is per square foot. Final requirements and project details can be discussed during your consultation.",
+    "packageCtaLabel": "Discuss this package",
+    "packageInquiryIntro": "Hi, I'd like a quote for the {name} Kitchen Package.",
+    "includedEyebrow": "EVERY PACKAGE",
+    "includedTitle": "From first measure",
+    "includedHighlight": "to final fitting.",
+    "includedBody": "A clear process and careful workmanship are part of every Home Care kitchen package.",
+    "includedServices": [
+      { "text": "Professional site measurement" },
+      { "text": "Computerized design & layout" },
+      { "text": "Machine edge banding" },
+      { "text": "Precision fabrication" },
+      { "text": "Professional installation" },
+      { "text": "Final alignment & finishing" },
+      { "text": "Site cleaning after installation" }
+    ],
+    "extrasEyebrow": "TAILOR THE DETAILS",
+    "extrasTitle": "Optional items,",
+    "extrasHighlight": "quoted separately.",
+    "extrasBody": "Add appliances, surfaces, and finishing work to suit your layout. These items can be included in your project quotation.",
+    "extrasLinkLabel": "Plan your kitchen",
+    "extrasLinkHref": "/contact-us",
+    "optionalItems": [
+      { "text": "Granite / quartz countertop" },
+      { "text": "Kitchen sink & mixer" },
+      { "text": "Hob & hood" },
+      { "text": "Built-in oven" },
+      { "text": "Built-in microwave" },
+      { "text": "Dishwasher" },
+      { "text": "Refrigerator unit" },
+      { "text": "Electrical & plumbing modifications" },
+      { "text": "False ceiling & tile work" }
+    ],
+    "whyEyebrow": "THE HOME CARE DIFFERENCE",
+    "whyTitle": "Better kitchens start",
+    "whyHighlight": "with better care.",
+    "reasons": [
+      { "text": "Premium quality materials" },
+      { "text": "Modern European designs" },
+      { "text": "Factory precision manufacturing" },
+      { "text": "Experienced installation team" },
+      { "text": "Competitive pricing" },
+      { "text": "Warranty on workmanship" },
+      { "text": "Timely project completion" }
+    ],
+    "packages": [
+      {
+        "name": "Standard",
+        "tier": "Essential",
+        "pricePerSqFt": 2500,
+        "description": "Modern kitchen essentials, carefully made with dependable materials and premium hardware.",
+        "calculatorDescription": "Modern essentials and dependable materials.",
+        "featured": false,
+        "note": "Ideal for modern kitchens with excellent quality at an economical price.",
+        "groups": [
+          {
+            "title": "Cabinet construction",
+            "items": [
+              { "text": "16mm Lasani Board cabinet boxes (ZRK Company)" },
+              { "text": "Nova UV Glossy Sheet cabinet shutters" },
+              { "text": "Machine edge banding for a seamless finish" }
+            ]
+          },
+          {
+            "title": "Aluminium cabinets",
+            "items": [
+              { "text": "4 aluminium profile glass cabinets" },
+              { "text": "Premium profile finish" }
+            ]
+          },
+          {
+            "title": "Hardware",
+            "items": [
+              { "text": "Soft-close cabinet hinges" },
+              { "text": "Premium quality hardware" }
+            ]
+          },
+          {
+            "title": "5 basic accessories",
+            "items": [
+              { "text": "Cutlery tray" },
+              { "text": "Bottle pull-out" },
+              { "text": "Tandem drawer" },
+              { "text": "Waste bin" },
+              { "text": "Under-sink organizer" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Premium",
+        "tier": "Most popular",
+        "pricePerSqFt": 3000,
+        "description": "An elevated finish with enhanced storage, thoughtful details, and integrated lighting.",
+        "calculatorDescription": "Enhanced storage, premium hardware, and lighting.",
+        "featured": true,
+        "note": "Perfect for homeowners looking for a premium finish with enhanced storage and lighting.",
+        "groups": [
+          {
+            "title": "Cabinet construction",
+            "items": [
+              { "text": "16mm waterproof PVC Sheet cabinet boxes" },
+              { "text": "Al Noor UV Glossy Sheet cabinet shutters" },
+              { "text": "Machine edge banding for a premium finish" }
+            ]
+          },
+          {
+            "title": "Aluminium cabinets",
+            "items": [
+              { "text": "8 aluminium profile glass cabinets" },
+              { "text": "Integrated profile LED lighting" }
+            ]
+          },
+          {
+            "title": "Hardware",
+            "items": [
+              { "text": "Premium soft-close cabinet hinges" },
+              { "text": "High-quality hardware fittings" }
+            ]
+          },
+          {
+            "title": "7 basic accessories",
+            "items": [
+              { "text": "Cutlery tray" },
+              { "text": "Bottle pull-out" },
+              { "text": "Tandem drawer" },
+              { "text": "Corner carousel" },
+              { "text": "Under-sink organizer" },
+              { "text": "Waste bin" },
+              { "text": "Spice pull-out" }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Luxury",
+        "tier": "Signature finish",
+        "pricePerSqFt": 3500,
+        "description": "Our most complete specification, with upgraded panels, a pantry tower, and sensor lighting.",
+        "calculatorDescription": "Upgraded panels, pantry tower, and sensor lighting.",
+        "featured": false,
+        "note": "A considered, full-featured kitchen for homeowners who want the finest details.",
+        "groups": [
+          {
+            "title": "Cabinet construction",
+            "items": [
+              { "text": "18mm waterproof PVC Sheet cabinet boxes" },
+              { "text": "6mm PVC Sheet cabinet back panels" },
+              { "text": "Al Noor UV Glossy Sheet cabinet shutters" },
+              { "text": "Machine edge banding for a flawless finish" }
+            ]
+          },
+          {
+            "title": "Aluminium cabinets",
+            "items": [
+              { "text": "8 aluminium profile glass cabinets" },
+              { "text": "1 floor-to-ceiling pantry/tower unit (approx. 4′ × 7′)" },
+              { "text": "Profile LED lighting in all aluminium cabinets" },
+              { "text": "Motion sensor (touchless) lighting system" }
+            ]
+          },
+          {
+            "title": "Hardware",
+            "items": [
+              { "text": "Premium soft-close cabinet hinges" },
+              { "text": "Heavy-duty premium hardware" }
+            ]
+          },
+          {
+            "title": "9 premium accessories",
+            "items": [
+              { "text": "Cutlery tray" },
+              { "text": "Bottle pull-out" },
+              { "text": "Tandem drawer" },
+              { "text": "Magic corner" },
+              { "text": "Under-sink organizer" },
+              { "text": "Waste bin" },
+              { "text": "Spice pull-out" },
+              { "text": "Pantry pull-out" },
+              { "text": "Corner storage system" }
+            ]
+          }
+        ]
+      }
+    ],
+    "seo": {
+      "metaTitle": "Kitchen Pricing | Home Care Constructions",
+      "metaDescription": "Thoughtful design, precision-made cabinetry, and a package for every home. Per-square-foot kitchen pricing in Rawalpindi.",
+      "ogTitle": "Kitchen Pricing | Home Care Constructions",
+      "ogDescription": "Modular kitchen packages with clear per-square-foot pricing.",
+      "ogHeadline": "",
+      "ogHighlight": "",
+      "ogCaption": "",
+      "ogFooter": ""
+    }
+  },
+  "quotePage": {
+    "breadcrumbTitle": "Calculate Your Quote",
+    "breadcrumbSubtitle": "Choose your kitchen package and get a quick estimate for your space.",
+    "eyebrow": "YOUR KITCHEN, YOUR BUDGET",
+    "title": "A clearer idea",
+    "titleHighlight": "starts right here.",
+    "intro": "Get an instant estimate using our per-square-foot package rates. Select an option and enter your cabinet area to see the total.",
+    "stepOneEyebrow": "01 / CHOOSE YOUR PACKAGE",
+    "stepOneTitle": "Start with the right fit.",
+    "stepOneBody": "Select a finish, then enter the measured cabinet area in square feet.",
+    "stepTwoEyebrow": "02 / ENTER CABINET AREA",
+    "stepTwoLabel": "Your measured cabinet area",
+    "stepTwoHelp": "Enter the total area of the cabinets you want us to build.",
+    "areaPlaceholder": "e.g. 120",
+    "areaUnit": "sq. ft.",
+    "popularBadge": "POPULAR",
+    "defaultPackage": "Premium",
+    "estimateEyebrow": "YOUR INSTANT ESTIMATE",
+    "estimateTitle": "Made for your space.",
+    "labelPackage": "Package",
+    "labelRate": "Rate",
+    "labelArea": "Cabinet area",
+    "labelTotal": "Estimated package total",
+    "ctaLabel": "Confirm your estimate",
+    "disclaimer": "This is an initial estimate based on package rate × cabinet area. Final pricing may vary after site measurement; optional appliances and countertop work are quoted separately.",
+    "whatsappIntro": "Hi, I used the online kitchen quote calculator.",
+    "messagePackageLabel": "Package",
+    "messageAreaLabel": "Cabinet area",
+    "messageAreaMissing": "not entered",
+    "messageTotalLabel": "Estimated package total",
+    "messageClosing": "Please help me confirm the final quotation.",
+    "seo": {
+      "metaTitle": "Calculate Your Kitchen Quote | Home Care Constructions",
+      "metaDescription": "Choose a kitchen package and enter your cabinet area to get an instant estimated price.",
+      "ogTitle": "Calculate Your Kitchen Quote",
+      "ogDescription": "Choose a kitchen package and enter your cabinet area to get an instant estimated price.",
+      "ogHeadline": "",
+      "ogHighlight": "",
+      "ogCaption": "",
+      "ogFooter": ""
+    }
+  },
+  "contactPage": {
+    "breadcrumbTitle": "Contact",
+    "breadcrumbSubtitle": "Share your vision — we'll help bring it home.",
+    "eyebrow": "LET'S TALK",
+    "title": "Let's create",
+    "titleHighlight": "something lasting",
+    "intro": "Whether you're planning a renovation, a new build, or a full interior redesign — tell us what you're imagining and we'll take it from there.",
+    "details": [
+      { "label": "01 — Email", "value": "hello@homecareconstructions.com", "href": "mailto:hello@homecareconstructions.com" },
+      { "label": "02 — Phone", "value": "03181552274", "href": "https://wa.me/923181552274" },
+      { "label": "03 — Studio", "value": "Rawalpindi, Pakistan", "href": "" }
+    ],
+    "hoursEyebrow": "VISIT",
+    "hoursTitle": "Hours &",
+    "hoursHighlight": "studio",
+    "hoursIntro": "Consultations by appointment. We typically reply within one business day.",
+    "hours": [
+      { "label": "Mon — Fri", "value": "10:00 am – 6:00 pm" },
+      { "label": "Saturday", "value": "By appointment" },
+      { "label": "Sunday", "value": "Closed" }
+    ],
+    "formEyebrow": "CONTACT",
+    "nameLabel": "01 — YOUR NAME",
+    "namePlaceholder": "Your full name",
+    "emailLabel": "02 — EMAIL ADDRESS",
+    "emailPlaceholder": "you@example.com",
+    "phoneLabel": "03 — PHONE",
+    "phonePlaceholder": "+92 300 0000000",
+    "projectLabel": "04 — PROJECT TYPE",
+    "projectPlaceholder": "Select a project type",
+    "messageLabel": "05 — TELL US MORE",
+    "messagePlaceholder": "Tell us about your space, timeline, or budget...",
+    "submitLabel": "SEND ON WHATSAPP",
+    "successMessage": "WhatsApp opened with your inquiry. Review the message and tap Send to complete it.",
+    "honeypotMessage": "Thanks — we'll be in touch shortly.",
+    "errorMessage": "Something went wrong. Please try again.",
+    "nameError": "Please enter your name.",
+    "emailError": "Please enter a valid email.",
+    "projectError": "Please select a project type.",
+    "messageError": "Tell us a little more (at least 10 characters).",
+    "whatsappIntro": "Hello Home Care Constructions, I'd like to discuss a project.",
+    "projectTypes": [
+      { "value": "interior", "label": "Interior Design" },
+      { "value": "renovation", "label": "Renovation & Remodeling" },
+      { "value": "kitchenRenovation", "label": "Kitchen Renovation" },
+      { "value": "construction", "label": "New Construction" },
+      { "value": "furniture", "label": "Custom Furniture" },
+      { "value": "consultation", "label": "Design Consultation" },
+      { "value": "other", "label": "Other" }
+    ],
+    "seo": {
+      "metaTitle": "Contact | Home Care Constructions",
+      "metaDescription": "Share your vision — we'll help bring it home. Contact Home Care Constructions in Rawalpindi.",
+      "ogTitle": "Contact Home Care Constructions",
+      "ogDescription": "Share your vision — we'll help bring it home.",
+      "ogHeadline": "",
+      "ogHighlight": "",
+      "ogCaption": "",
+      "ogFooter": ""
+    }
+  }
+}

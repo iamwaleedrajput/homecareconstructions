@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_gallery_metas",
+  "info": {
+    "displayName": "Gallery meta",
+    "icon": "information"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

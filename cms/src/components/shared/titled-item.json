@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_shared_titled_items",
+  "info": {
+    "displayName": "Titled item",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

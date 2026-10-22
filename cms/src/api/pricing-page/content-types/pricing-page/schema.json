@@ -1,0 +1,142 @@
+{
+  "kind": "singleType",
+  "collectionName": "pricing_pages",
+  "info": {
+    "singularName": "pricing-page",
+    "pluralName": "pricing-pages",
+    "displayName": "Pricing page",
+    "description": "Pricing page content edited in Strapi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "breadcrumbTitle": {
+      "type": "string",
+      "required": false
+    },
+    "breadcrumbSubtitle": {
+      "type": "text"
+    },
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "text"
+    },
+    "titleHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "intro": {
+      "type": "text"
+    },
+    "unitNotePrimary": {
+      "type": "string",
+      "required": false
+    },
+    "unitNoteSecondary": {
+      "type": "string",
+      "required": false
+    },
+    "currency": {
+      "type": "string",
+      "required": false
+    },
+    "priceUnit": {
+      "type": "string",
+      "required": false
+    },
+    "pricingNote": {
+      "type": "text"
+    },
+    "packageCtaLabel": {
+      "type": "string",
+      "required": false
+    },
+    "packageInquiryIntro": {
+      "type": "text"
+    },
+    "includedEyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "includedTitle": {
+      "type": "text"
+    },
+    "includedHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "includedBody": {
+      "type": "text"
+    },
+    "includedServices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "extrasEyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "extrasTitle": {
+      "type": "text"
+    },
+    "extrasHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "extrasBody": {
+      "type": "text"
+    },
+    "extrasLinkLabel": {
+      "type": "string",
+      "required": false
+    },
+    "extrasLinkHref": {
+      "type": "string",
+      "required": false
+    },
+    "optionalItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "whyEyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "whyTitle": {
+      "type": "text"
+    },
+    "whyHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "reasons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "packages": {
+      "type": "component",
+      "repeatable": true,
+      "component": "pricing.package"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

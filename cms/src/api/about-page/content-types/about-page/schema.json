@@ -1,0 +1,71 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "About page",
+    "description": "About page content edited in Strapi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "breadcrumbTitle": {
+      "type": "string",
+      "required": false
+    },
+    "breadcrumbSubtitle": {
+      "type": "text"
+    },
+    "story": {
+      "type": "component",
+      "repeatable": false,
+      "component": "about.story"
+    },
+    "valuesEyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "valuesTitle": {
+      "type": "text"
+    },
+    "valuesHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "values": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.titled-item"
+    },
+    "stats": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.titled-item"
+    },
+    "why": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.why"
+    },
+    "cta": {
+      "type": "component",
+      "repeatable": false,
+      "component": "home.cta"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

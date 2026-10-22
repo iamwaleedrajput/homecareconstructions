@@ -1,43 +1,23 @@
 import { Container, Grid } from "@mui/material";
 import classNames from "classnames";
 import React from "react";
+import Lines from "../components/Lines";
+import type { ProcessContent } from "@/lib/site";
 
-export default function ProcessSection() {
-  const steps = [
-    {
-      title: "Consult",
-      description:
-        "We listen to your vision, understand how you live, and define goals that balance beauty, comfort, and budget.",
-    },
-    {
-      title: "Design",
-      description:
-        "Concepts become detailed plans — layouts, materials, and finishes shaped with clarity and purpose.",
-    },
-    {
-      title: "Build",
-      description:
-        "Expert execution, quality materials, and careful craftsmanship take every detail from foundation to final finish.",
-    },
-  ];
-
+export default function ProcessSection({ content }: { content: ProcessContent }) {
   return (
     <div className="process-section">
       <Container>
         <div className="section-intro">
-          <span className="section-eyebrow">HOW WE WORK</span>
-          <h2>
-            A clear path
-            <br />
-            <span>from idea to home</span>
-          </h2>
+          <span className="section-eyebrow">{content.eyebrow}</span>
+          <Lines text={content.title} highlight={content.titleHighlight} />
         </div>
         <Grid container>
-          {steps.map((item, index) => (
-            <Grid size={{ xs: 12, md: 4 }} key={item.title}>
+          {content.steps.map((item, index) => (
+            <Grid size={{ xs: 12, md: 4 }} key={`${item.title}-${index}`}>
               <div
                 className={classNames("process-card", {
-                  borderNone: index === 2,
+                  borderNone: index === content.steps.length - 1,
                 })}
               >
                 <div className="number">0{index + 1}</div>

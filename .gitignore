@@ -144,3 +144,15 @@ vite.config.ts.timestamp-*
 
 .DS_Store
 /package-lock.json
+
+# Strapi
+cms/.tmp
+cms/.cache
+cms/dist
+cms/build
+cms/.strapi
+cms/public/uploads/*
+!cms/public/uploads/.gitkeep
+cms/.env
+cms/.env.*
+!cms/.env.example

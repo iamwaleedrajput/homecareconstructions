@@ -1,16 +1,24 @@
 import { Container } from "@mui/material";
 import Link from "next/link";
 import React from "react";
+import type { CtaContent } from "@/lib/site";
 
-export default function HaveAnyProject() {
+export default function HaveAnyProject({ content }: { content: CtaContent }) {
   return (
-    <div className="have-any-project">
+    <div
+      className="have-any-project"
+      style={
+        content.backgroundUrl
+          ? ({ "--cta-image": `url("${content.backgroundUrl}")` } as React.CSSProperties)
+          : undefined
+      }
+    >
       <Container>
-        <span className="section-eyebrow light">NEXT STEP</span>
-        <h1>Have a project in mind?</h1>
-        <p>Tell us what you&apos;re envisioning — we&apos;ll help shape it into reality.</p>
-        <Link href="/contact-us" className="hero-btn hero-btn-primary">
-          Contact Us
+        <span className="section-eyebrow light">{content.eyebrow}</span>
+        <h1>{content.title}</h1>
+        <p>{content.body}</p>
+        <Link href={content.ctaHref} className="hero-btn hero-btn-primary">
+          {content.ctaLabel}
         </Link>
       </Container>
     </div>

@@ -1,0 +1,72 @@
+{
+  "collectionName": "components_home_abouts",
+  "info": {
+    "displayName": "Home about",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "text"
+    },
+    "titleHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "paragraphOne": {
+      "type": "text"
+    },
+    "paragraphTwo": {
+      "type": "text"
+    },
+    "linkLabel": {
+      "type": "string",
+      "required": false
+    },
+    "linkHref": {
+      "type": "string",
+      "required": false
+    },
+    "badgeValue": {
+      "type": "string",
+      "required": false
+    },
+    "badgeLabel": {
+      "type": "string",
+      "required": false
+    },
+    "mainImageAlt": {
+      "type": "string",
+      "required": false
+    },
+    "insetImageAlt": {
+      "type": "string",
+      "required": false
+    },
+    "facts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.titled-item"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "insetImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

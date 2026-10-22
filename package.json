@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "cms": "npm --prefix cms run develop"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

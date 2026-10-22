@@ -5,46 +5,55 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SplashScreen from "./components/SplashScreen";
 import AOSProvider from "./components/AOSProvider";
+import { getGlobal } from "@/lib/site";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://homecareconstructions.com"),
-  title: "Home Care Constructions | Design, Build & Transform",
-  description:
-    "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan. Designed and built with precision, care, and timeless detail.",
-  openGraph: {
-    type: "website",
-    locale: "en_PK",
-    siteName: "Home Care Constructions",
-    title: "Home Care Constructions | Design, Build & Transform",
-    description:
-      "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan. Designed and built with precision, care, and timeless detail.",
-    images: [
-      {
-        url: "/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "Home Care Constructions — Premium Design, Build & Transform",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Home Care Constructions | Design, Build & Transform",
-    description:
-      "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan.",
-    images: ["/opengraph-image"],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const global = await getGlobal();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homecareconstructions.com";
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+  return {
+    metadataBase: new URL(siteUrl),
+    title: global.seo.metaTitle,
+    description: global.seo.metaDescription,
+    openGraph: {
+      type: "website",
+      locale: "en_PK",
+      siteName: global.siteName,
+      title: global.seo.ogTitle,
+      description: global.seo.ogDescription,
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: global.seo.ogTitle || global.siteName,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: global.seo.ogTitle,
+      description: global.seo.ogDescription,
+      images: ["/opengraph-image"],
+    },
+  };
+}
+
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const global = await getGlobal();
+
   return (
     <html lang="en">
       <body>
-        <SplashScreen />
+        <SplashScreen content={global} />
         <AOSProvider />
-        <Navbar />
+        <Navbar content={global} />
         {children}
-        <Footer />
+        <Footer content={global} />
       </body>
     </html>
   );

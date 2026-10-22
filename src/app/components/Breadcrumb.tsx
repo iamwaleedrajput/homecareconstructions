@@ -6,15 +6,24 @@ type BreadcrumbProps = {
   title: string;
   subtitle?: string;
   label?: string;
+  imageUrl?: string | null;
 };
 
 export default function Breadcrumb({
   title,
   subtitle,
   label = "Home Care Constructions",
+  imageUrl,
 }: BreadcrumbProps) {
   return (
-    <section className="page-hero">
+    <section
+      className="page-hero"
+      style={
+        imageUrl
+          ? ({ "--page-hero-image": `url("${imageUrl}")` } as React.CSSProperties)
+          : undefined
+      }
+    >
       <div className="page-hero-overlay" aria-hidden="true" />
       <Container>
         <div className="page-hero-inner">

@@ -3,47 +3,33 @@ import React from "react";
 import img1 from "../@assets/images/misc/1.jpg";
 import img2 from "../@assets/images/misc/2.jpg";
 import img3 from "../@assets/images/misc/3.jpg";
-import Image from "next/image";
 import Link from "next/link";
+import Lines from "../components/Lines";
+import CmsImage from "../components/CmsImage";
+import type { FeaturedContent } from "@/lib/site";
+import type { StaticImageData } from "next/image";
 
-const projects = [
-  {
-    image: img1,
-    title: "Modern Living Suite",
-    description: "Warm interiors with clean lines and lasting materials.",
-  },
-  {
-    image: img2,
-    title: "Open Kitchen Renovation",
-    description: "A brighter, more functional heart of the home.",
-  },
-  {
-    image: img3,
-    title: "Full Home Remodel",
-    description: "Design and build, coordinated end to end.",
-  },
-];
+const fallbacks: StaticImageData[] = [img1, img2, img3];
 
-export default function FeaturedSection() {
+export default function FeaturedSection({ content }: { content: FeaturedContent }) {
   return (
     <Container>
       <div className="featured-section">
         <div className="section-intro centered">
-          <span className="section-eyebrow">SELECTED WORK</span>
-          <h2>
-            Featured
-            <br />
-            <span>projects</span>
-          </h2>
+          <span className="section-eyebrow">{content.eyebrow}</span>
+          <Lines text={content.title} highlight={content.titleHighlight} />
         </div>
         <Grid container spacing={3}>
-          {projects.map((project) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={project.title}>
+          {content.projects.map((project, index) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={`${project.title}-${index}`}>
               <div className="featured-card">
-                <Image
-                  src={project.image}
-                  alt={project.title}
+                <CmsImage
+                  src={project.imageUrl}
+                  fallback={fallbacks[index % fallbacks.length]}
+                  alt={project.alt || project.title}
+                  fill
                   className="main-img"
+                  sizes="(max-width: 600px) 100vw, 33vw"
                 />
                 <div className="content">
                   <h3>{project.title}</h3>
@@ -54,8 +40,8 @@ export default function FeaturedSection() {
           ))}
         </Grid>
         <div className="featured-footer">
-          <Link href="/gallery" className="section-link">
-            Browse full gallery
+          <Link href={content.linkHref} className="section-link">
+            {content.linkLabel}
           </Link>
         </div>
       </div>

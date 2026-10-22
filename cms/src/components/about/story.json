@@ -1,0 +1,76 @@
+{
+  "collectionName": "components_about_storys",
+  "info": {
+    "displayName": "Our story",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "required": false
+    },
+    "title": {
+      "type": "text"
+    },
+    "titleHighlight": {
+      "type": "string",
+      "required": false
+    },
+    "paragraphOne": {
+      "type": "text"
+    },
+    "paragraphTwo": {
+      "type": "text"
+    },
+    "captionStrong": {
+      "type": "string",
+      "required": false
+    },
+    "captionSpan": {
+      "type": "string",
+      "required": false
+    },
+    "mainImageAlt": {
+      "type": "string",
+      "required": false
+    },
+    "secondaryImageAlt": {
+      "type": "string",
+      "required": false
+    },
+    "accentImageAlt": {
+      "type": "string",
+      "required": false
+    },
+    "points": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.text-item"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "secondaryImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "accentImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

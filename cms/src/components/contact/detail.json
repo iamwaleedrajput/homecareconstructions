@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_contact_details",
+  "info": {
+    "displayName": "Contact detail",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": false
+    },
+    "value": {
+      "type": "string",
+      "required": false
+    },
+    "href": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
