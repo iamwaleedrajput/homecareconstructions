@@ -1,9 +1,0 @@
-node_modules
-.tmp
-.cache
-dist
-build
-.env
-.strapi
-public/uploads
-*.md

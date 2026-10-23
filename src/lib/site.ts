@@ -1,6 +1,9 @@
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
 import type { Metadata } from "next";
-import fallbackSite from "../../cms/data/site.json";
+import { getPayload } from "payload";
+import config from "@payload-config";
+import fallbackSite from "../content/site.json";
 
 export type LinkItem = { label: string; href: string };
 
@@ -332,71 +335,6 @@ export type ContactContent = {
   seo: SeoContent;
 };
 
-const GLOBAL_POPULATE = {
-  navLinks: true,
-  footerLinks: true,
-  logo: true,
-  seo: true,
-};
-
-const HOME_POPULATE = {
-  hero: { populate: { sideWords: true, background: true } },
-  about: { populate: { facts: true, mainImage: true, insetImage: true } },
-  process: { populate: { steps: true } },
-  services: { populate: { items: true } },
-  featured: { populate: { projects: { populate: { image: true } } } },
-  why: { populate: { items: true } },
-  testimonials: { populate: { items: true } },
-  cta: { populate: { background: true } },
-};
-
-const ABOUT_POPULATE = {
-  story: {
-    populate: {
-      points: true,
-      mainImage: true,
-      secondaryImage: true,
-      accentImage: true,
-    },
-  },
-  values: true,
-  stats: true,
-  why: { populate: { items: true } },
-  cta: { populate: { background: true } },
-  heroImage: true,
-  seo: true,
-};
-
-const GALLERY_POPULATE = {
-  meta: true,
-  items: { populate: { image: true } },
-  heroImage: true,
-  seo: true,
-};
-
-const PRICING_POPULATE = {
-  includedServices: true,
-  optionalItems: true,
-  reasons: true,
-  packages: { populate: { groups: { populate: { items: true } } } },
-  heroImage: true,
-  seo: true,
-};
-
-const QUOTE_POPULATE = {
-  heroImage: true,
-  seo: true,
-};
-
-const CONTACT_POPULATE = {
-  details: true,
-  hours: true,
-  projectTypes: true,
-  heroImage: true,
-  studioImage: true,
-  seo: true,
-};
-
 function asRecord(value: unknown): Record<string, unknown> | null {
   if (!value || typeof value !== "object" || Array.isArray(value)) return null;
   return value as Record<string, unknown>;
@@ -423,11 +361,8 @@ function mediaUrl(value: unknown): string | null {
   const media = nested?.url ? nested : record;
   const url = media && typeof media.url === "string" ? media.url : "";
   if (!url) return null;
-  if (url.startsWith("http://") || url.startsWith("https://")) return url;
-
-  const base = strapiOrigin();
-  if (!base) return null;
-  return `${base}${url.startsWith("/") ? url : `/${url}`}`;
+  if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("/")) return url;
+  return `/${url}`;
 }
 
 function links(value: unknown, fallback: LinkItem[]): LinkItem[] {
@@ -943,54 +878,21 @@ function mapContact(value: unknown): ContactContent {
   };
 }
 
-function strapiOrigin() {
-  const raw = process.env.STRAPI_URL?.trim();
-  if (!raw) return null;
-  return raw.replace(/\/$/, "").replace(/\/api$/, "");
-}
-
-function appendPopulate(params: URLSearchParams, value: unknown, prefix: string) {
-  if (value === true || value === "*") {
-    params.append(prefix, "true");
-    return;
-  }
-  if (!value || typeof value !== "object") return;
-  for (const [key, child] of Object.entries(value)) {
-    appendPopulate(params, child, `${prefix}[${key}]`);
-  }
-}
-
-async function fetchEntry(slug: string, populate: Record<string, unknown>) {
-  const origin = strapiOrigin();
-  if (!origin) return null;
-
-  const url = new URL(`/api/${slug}`, origin);
-  url.searchParams.set("status", "published");
-  appendPopulate(url.searchParams, populate, "populate");
-
-  const headers: HeadersInit = {};
-  if (process.env.STRAPI_API_TOKEN) {
-    headers.Authorization = `Bearer ${process.env.STRAPI_API_TOKEN}`;
-  }
-
+async function fetchEntry(slug: string) {
   try {
-    const response = await fetch(url, {
-      headers,
-      next: { revalidate: 60, tags: ["strapi", `strapi:${slug}`] },
-    });
-    if (!response.ok) {
-      console.error(`Strapi request for ${slug} failed with ${response.status}`);
-      return null;
-    }
-    const json: unknown = await response.json();
-    const data = asRecord(json)?.data;
-    const record = asRecord(data);
-    if (record?.attributes && typeof record.attributes === "object") {
-      return record.attributes;
-    }
-    return data ?? null;
+    return await unstable_cache(
+      async () => {
+        const payload = await getPayload({ config });
+        return payload.findGlobal({
+          slug: slug as "site",
+          depth: 2,
+        });
+      },
+      ["payload-global", slug],
+      { revalidate: 60, tags: ["payload", `payload:${slug}`] },
+    )();
   } catch (error) {
-    console.error(`Strapi request for ${slug} failed`, error);
+    console.error(`Payload request for ${slug} failed`, error);
     return null;
   }
 }
@@ -1006,10 +908,10 @@ export function pageMetadata(seo: SeoContent): Metadata {
   };
 }
 
-export const getGlobal = cache(async () => mapGlobal(await fetchEntry("global", GLOBAL_POPULATE)));
-export const getHomePage = cache(async () => mapHome(await fetchEntry("home-page", HOME_POPULATE)));
-export const getAboutPage = cache(async () => mapAbout(await fetchEntry("about-page", ABOUT_POPULATE)));
-export const getGalleryPage = cache(async () => mapGallery(await fetchEntry("gallery-page", GALLERY_POPULATE)));
-export const getPricingPage = cache(async () => mapPricing(await fetchEntry("pricing-page", PRICING_POPULATE)));
-export const getQuotePage = cache(async () => mapQuote(await fetchEntry("quote-page", QUOTE_POPULATE)));
-export const getContactPage = cache(async () => mapContact(await fetchEntry("contact-page", CONTACT_POPULATE)));
+export const getGlobal = cache(async () => mapGlobal(await fetchEntry("site")));
+export const getHomePage = cache(async () => mapHome(await fetchEntry("home-page")));
+export const getAboutPage = cache(async () => mapAbout(await fetchEntry("about-page")));
+export const getGalleryPage = cache(async () => mapGallery(await fetchEntry("gallery-page")));
+export const getPricingPage = cache(async () => mapPricing(await fetchEntry("pricing-page")));
+export const getQuotePage = cache(async () => mapQuote(await fetchEntry("quote-page")));
+export const getContactPage = cache(async () => mapContact(await fetchEntry("contact-page")));
