@@ -1,9 +1,7 @@
 import { cache } from "react";
-import { unstable_cache } from "next/cache";
 import type { Metadata } from "next";
-import { getPayload } from "payload";
-import config from "@payload-config";
 import fallbackSite from "../content/site.json";
+import { readSiteFile } from "./content-file";
 
 export type LinkItem = { label: string; href: string };
 
@@ -356,10 +354,11 @@ function amount(value: unknown, fallback: number) {
 }
 
 function mediaUrl(value: unknown): string | null {
+  const direct = typeof value === "string" ? value.trim() : "";
   const record = asRecord(value);
   const nested = record?.data ? asRecord(record.data) : null;
   const media = nested?.url ? nested : record;
-  const url = media && typeof media.url === "string" ? media.url : "";
+  const url = direct || (media && typeof media.url === "string" ? media.url : "");
   if (!url) return null;
   if (url.startsWith("http://") || url.startsWith("https://") || url.startsWith("/")) return url;
   return `/${url}`;
@@ -878,21 +877,22 @@ function mapContact(value: unknown): ContactContent {
   };
 }
 
+const sectionBySlug: Record<string, string> = {
+  site: "global",
+  "home-page": "homePage",
+  "about-page": "aboutPage",
+  "gallery-page": "galleryPage",
+  "pricing-page": "pricingPage",
+  "quote-page": "quotePage",
+  "contact-page": "contactPage",
+};
+
 async function fetchEntry(slug: string) {
   try {
-    return await unstable_cache(
-      async () => {
-        const payload = await getPayload({ config });
-        return payload.findGlobal({
-          slug: slug as "site",
-          depth: 2,
-        });
-      },
-      ["payload-global", slug],
-      { revalidate: 60, tags: ["payload", `payload:${slug}`] },
-    )();
+    const content = await readSiteFile();
+    return content[sectionBySlug[slug]] ?? null;
   } catch (error) {
-    console.error(`Payload request for ${slug} failed`, error);
+    console.error("Could not read src/content/site.json", error);
     return null;
   }
 }

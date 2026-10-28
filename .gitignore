@@ -144,9 +144,3 @@ vite.config.ts.timestamp-*
 
 .DS_Store
 /package-lock.json
-
-# Payload
-.payload
-media
-payload.db
-src/payload-types.ts

@@ -1,77 +1,46 @@
 # Deploy on Vercel
 
-The website and Payload CMS are one Next.js app. Vercel deploys both. The public site stays at `/`, and the editor is at `/admin`.
+The site is a Next.js app. All editable copy is in one file:
 
-You need two Vercel storage add-ons:
+`src/content/site.json`
 
-- **Neon Postgres** for the content database. Payload cannot keep a SQLite file on Vercel.
-- **Vercel Blob** for uploaded images. The serverless filesystem does not keep files.
+There is no database and no CMS. Vercel serves the file that was in the project when you deployed.
 
 ## 1. Push the project to GitHub
 
-Commit the project and push it to a GitHub repository if it is not there already.
+Commit the project, including `src/content/site.json`, and push it to a GitHub repository.
 
 ## 2. Create the Vercel project
 
 1. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
 2. Leave **Root Directory** as the repository root.
 3. Framework preset: **Next.js**.
-4. Set **Node.js Version** to **24.x**. Payload needs Node `22.23.4` or newer, or Node `24.22.1` or newer.
-5. Do not deploy yet. Open **Environment Variables** first.
+4. Deploy.
 
-## 3. Add storage
+No environment variables are required. You can set `NEXT_PUBLIC_SITE_URL` to the live address, with no trailing slash, if you want metadata to use that domain. Example: `https://homecareconstructions.vercel.app`.
 
-In the Vercel project:
+## 3. Change the live site
 
-1. Open **Storage** and create a **Neon** (Postgres) database. Connect it to this project. Vercel adds `DATABASE_URL`.
-2. Open **Storage** again and create a **Blob** store. Connect it to this project. Vercel adds `BLOB_READ_WRITE_TOKEN`.
+Vercel’s servers do not keep changes written to the disk. To update the published site:
 
-## 4. Add the remaining environment variables
+1. Change `src/content/site.json`.
+2. Commit and push.
+3. Vercel redeploys from that commit.
 
-Set these for Production, Preview, and Development:
-
-| Name | Value |
-| --- | --- |
-| `PAYLOAD_SECRET` | A long random string. Run `openssl rand -base64 32` locally and paste the result. |
-| `NEXT_PUBLIC_SITE_URL` | The production URL, with no trailing slash. Example: `https://homecareconstructions.vercel.app` |
-
-`DATABASE_URL` and `BLOB_READ_WRITE_TOKEN` come from the storage connections. Do not invent those values.
-
-After the first successful deploy, change `NEXT_PUBLIC_SITE_URL` to the custom domain if you add one, then redeploy.
-
-## 5. Deploy
-
-Click **Deploy**. The first boot creates the database tables and fills them with the current site copy. Later edits in the admin are kept.
-
-## 6. Create the editor login
-
-Open `https://YOUR_DOMAIN/admin`.
-
-The first visit asks you to create an admin user. Use that email and password to edit the site. There is no default password.
-
-## 7. Edit the site
-
-In the admin sidebar:
-
-- **Settings → Site settings** covers the name, logo, phone, WhatsApp number, navigation, footer, and SEO.
-- **Pages** covers Home, About, Gallery, Pricing, Quote calculator, and Contact.
-
-Upload an image on any image field to replace the built-in photo. Kitchen package prices also drive the quote calculator. Saving a page publishes it and refreshes the site within about a minute.
-
-## Local editing
-
-```bash
-cp .env.example .env
-```
-
-Put a real `PAYLOAD_SECRET` in `.env`, then:
+You can change the file in your editor, or locally:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000/admin](http://localhost:3000/admin) and create the first user. Local content is stored in `.payload/data.db` and is separate from production.
+Open [http://localhost:3000/edit](http://localhost:3000/edit), edit the fields, and click **Save file**. That writes `src/content/site.json`. Commit and push that file to publish the change.
+
+To replace a photo, add the image to the `public` folder and set the matching field to a path such as `/kitchen.jpg`.
+
+## Optional edit key
+
+Set `CONTENT_EDIT_KEY` if `/edit` should ask for a password before saving. On Vercel this still cannot store the file, so production updates stay a commit and redeploy.
 
 ## Custom domain
 

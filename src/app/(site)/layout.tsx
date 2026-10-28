@@ -7,6 +7,8 @@ import SplashScreen from "./components/SplashScreen";
 import AOSProvider from "./components/AOSProvider";
 import { getGlobal } from "@/lib/site";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const global = await getGlobal();
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://homecareconstructions.com";
