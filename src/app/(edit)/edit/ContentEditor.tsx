@@ -31,16 +31,30 @@ export default function ContentEditor({
 
     setPending(true);
     setMessage("");
-    const response = await fetch("/api/content", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        ...(editKey ? { "x-edit-key": editKey } : {}),
-      },
-      body: JSON.stringify(parsed),
-    });
-    const result = (await response.json().catch(() => null)) as { error?: string } | null;
-    setPending(false);
+    let response: Response;
+    let result: { error?: string } | null;
+    try {
+      response = await fetch("/api/content", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          ...(editKey ? { "x-edit-key": editKey } : {}),
+        },
+        body: JSON.stringify(parsed),
+        signal: AbortSignal.timeout(20000),
+      });
+      result = (await response.json().catch(() => null)) as { error?: string } | null;
+    } catch (error) {
+      const timedOut = error instanceof DOMException && error.name === "TimeoutError";
+      setMessage(
+        timedOut
+          ? "The server did not answer. This live server probably cannot save files. Edit src/content/site.json locally, then redeploy."
+          : "Could not reach the server. Check your connection and try again.",
+      );
+      return;
+    } finally {
+      setPending(false);
+    }
 
     if (!response.ok) {
       setMessage(result?.error || "Could not save the file.");

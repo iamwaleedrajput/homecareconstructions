@@ -1,6 +1,6 @@
 {
   "global": {
-    "siteName": "Home Care Constructions",
+    "siteName": "Home Care Construction",
     "brandLine1": "Home Care",
     "brandLine2": "Constructions",
     "locationShort": "Rawalpindi",
@@ -10,7 +10,7 @@
     "email": "hello@homecareconstructions.com",
     "address": "Rawalpindi, Pakistan",
     "footerBlurb": "Designers, builders, and craftsmen — turning ideas into lasting spaces with precision, care, and timeless detail.",
-    "footerTagline": "Design. Build. Transform.",
+    "footerTagline": "Design. Build. Transfor.",
     "footerExploreHeading": "Explore",
     "footerContactHeading": "Get in touch",
     "copyrightSuffix": "All rights reserved.",
@@ -18,21 +18,51 @@
     "navCtaLabel": "Start a project",
     "navCtaHref": "/contact-us",
     "navLinks": [
-      { "label": "Home", "href": "/" },
-      { "label": "About", "href": "/about" },
-      { "label": "Gallery", "href": "/gallery" },
-      { "label": "Pricing", "href": "/pricing" },
-      { "label": "Quote calculator", "href": "/calculate-your-quote" }
+      {
+        "label": "Hom",
+        "href": "/"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Gallery",
+        "href": "/gallery"
+      },
+      {
+        "label": "Pricing",
+        "href": "/pricing"
+      },
+      {
+        "label": "Quote calculator",
+        "href": "/calculate-your-quote"
+      }
     ],
     "footerLinks": [
-      { "label": "Homepage", "href": "/" },
-      { "label": "About us", "href": "/about" },
-      { "label": "Gallery", "href": "/gallery" },
-      { "label": "Pricing", "href": "/pricing" },
-      { "label": "Contact us", "href": "/contact-us" }
+      {
+        "label": "Homepage",
+        "href": "/"
+      },
+      {
+        "label": "About us",
+        "href": "/about"
+      },
+      {
+        "label": "Gallery",
+        "href": "/gallery"
+      },
+      {
+        "label": "Pricing",
+        "href": "/pricing"
+      },
+      {
+        "label": "Contact us",
+        "href": "/contact-us"
+      }
     ],
     "seo": {
-      "metaTitle": "Home Care Constructions | Design, Build & Transform",
+      "metaTitle": "Home Care Construction | Design, Build & Transform",
       "metaDescription": "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan. Designed and built with precision, care, and timeless detail.",
       "ogTitle": "Home Care Constructions | Design, Build & Transform",
       "ogDescription": "Premium construction, modular kitchens, and thoughtful interiors in Rawalpindi, Pakistan. Designed and built with precision, care, and timeless detail.",
@@ -46,7 +76,7 @@
     "hero": {
       "eyebrow": "Home Care Constructions · Rawalpindi",
       "title": "Spaces made",
-      "titleHighlight": "for living.",
+      "titleHighlight": "for livin.",
       "script": "Built with purpose.",
       "lead": "Thoughtful interiors, bespoke kitchens, and lasting builds — brought to life with care from the first sketch to the final finish.",
       "primaryCtaLabel": "Start a project",
@@ -60,9 +90,15 @@
       "bottomLine": "Considered details. Enduring spaces.",
       "scrollCue": "SCROLL TO EXPLORE",
       "sideWords": [
-        { "text": "DESIGN" },
-        { "text": "BUILD" },
-        { "text": "TRANSFORM" }
+        {
+          "text": "DESIGN"
+        },
+        {
+          "text": "BUILD"
+        },
+        {
+          "text": "TRANSFORM"
+        }
       ]
     },
     "about": {
@@ -78,8 +114,16 @@
       "mainImageAlt": "Completed interior by Home Care Constructions",
       "insetImageAlt": "Craftsmanship and finish detail",
       "facts": [
-        { "title": "Design", "subtitle": "Interiors with intent", "description": "" },
-        { "title": "Build", "subtitle": "Execution you can trust", "description": "" }
+        {
+          "title": "Design",
+          "subtitle": "Interiors with intent",
+          "description": ""
+        },
+        {
+          "title": "Build",
+          "subtitle": "Execution you can trust",
+          "description": ""
+        }
       ]
     },
     "process": {
@@ -240,9 +284,15 @@
       "secondaryImageAlt": "Detail of craftsmanship and finishes",
       "accentImageAlt": "Architectural interior detail",
       "points": [
-        { "text": "Design & build under one roof" },
-        { "text": "Clear communication at every stage" },
-        { "text": "Craftsmanship that stands the test of time" }
+        {
+          "text": "Design & build under one roof"
+        },
+        {
+          "text": "Clear communication at every stage"
+        },
+        {
+          "text": "Craftsmanship that stands the test of time"
+        }
       ]
     },
     "valuesEyebrow": "WHAT DRIVES US",
@@ -335,23 +385,68 @@
     "titleHighlight": "speak for themselves",
     "intro": "From thoughtful interiors to complete renovations, we transform ideas into environments that inspire and elevate everyday living.",
     "meta": [
-      { "title": "Interiors", "subtitle": "Living, kitchen, suite" },
-      { "title": "Build", "subtitle": "Renovation to finish" },
-      { "title": "Detail", "subtitle": "Joinery & materials" }
+      {
+        "title": "Interiors",
+        "subtitle": "Living, kitchen, suite"
+      },
+      {
+        "title": "Build",
+        "subtitle": "Renovation to finish"
+      },
+      {
+        "title": "Detail",
+        "subtitle": "Joinery & materials"
+      }
     ],
     "items": [
-      { "title": "Bed", "alt": "Bed" },
-      { "title": "Kitchen", "alt": "Kitchen" },
-      { "title": "Sink", "alt": "Sink" },
-      { "title": "Books", "alt": "Books" },
-      { "title": "Bed", "alt": "Bed" },
-      { "title": "Kitchen", "alt": "Kitchen" },
-      { "title": "Sink", "alt": "Sink" },
-      { "title": "Books", "alt": "Books" },
-      { "title": "Bed", "alt": "Bed" },
-      { "title": "Kitchen", "alt": "Kitchen" },
-      { "title": "Sink", "alt": "Sink" },
-      { "title": "Books", "alt": "Books" }
+      {
+        "title": "Bed",
+        "alt": "Bed"
+      },
+      {
+        "title": "Kitchen",
+        "alt": "Kitchen"
+      },
+      {
+        "title": "Sink",
+        "alt": "Sink"
+      },
+      {
+        "title": "Books",
+        "alt": "Books"
+      },
+      {
+        "title": "Bed",
+        "alt": "Bed"
+      },
+      {
+        "title": "Kitchen",
+        "alt": "Kitchen"
+      },
+      {
+        "title": "Sink",
+        "alt": "Sink"
+      },
+      {
+        "title": "Books",
+        "alt": "Books"
+      },
+      {
+        "title": "Bed",
+        "alt": "Bed"
+      },
+      {
+        "title": "Kitchen",
+        "alt": "Kitchen"
+      },
+      {
+        "title": "Sink",
+        "alt": "Sink"
+      },
+      {
+        "title": "Books",
+        "alt": "Books"
+      }
     ],
     "seo": {
       "metaTitle": "Gallery | Home Care Constructions",
@@ -383,13 +478,27 @@
     "includedHighlight": "to final fitting.",
     "includedBody": "A clear process and careful workmanship are part of every Home Care kitchen package.",
     "includedServices": [
-      { "text": "Professional site measurement" },
-      { "text": "Computerized design & layout" },
-      { "text": "Machine edge banding" },
-      { "text": "Precision fabrication" },
-      { "text": "Professional installation" },
-      { "text": "Final alignment & finishing" },
-      { "text": "Site cleaning after installation" }
+      {
+        "text": "Professional site measurement"
+      },
+      {
+        "text": "Computerized design & layout"
+      },
+      {
+        "text": "Machine edge banding"
+      },
+      {
+        "text": "Precision fabrication"
+      },
+      {
+        "text": "Professional installation"
+      },
+      {
+        "text": "Final alignment & finishing"
+      },
+      {
+        "text": "Site cleaning after installation"
+      }
     ],
     "extrasEyebrow": "TAILOR THE DETAILS",
     "extrasTitle": "Optional items,",
@@ -398,27 +507,59 @@
     "extrasLinkLabel": "Plan your kitchen",
     "extrasLinkHref": "/contact-us",
     "optionalItems": [
-      { "text": "Granite / quartz countertop" },
-      { "text": "Kitchen sink & mixer" },
-      { "text": "Hob & hood" },
-      { "text": "Built-in oven" },
-      { "text": "Built-in microwave" },
-      { "text": "Dishwasher" },
-      { "text": "Refrigerator unit" },
-      { "text": "Electrical & plumbing modifications" },
-      { "text": "False ceiling & tile work" }
+      {
+        "text": "Granite / quartz countertop"
+      },
+      {
+        "text": "Kitchen sink & mixer"
+      },
+      {
+        "text": "Hob & hood"
+      },
+      {
+        "text": "Built-in oven"
+      },
+      {
+        "text": "Built-in microwave"
+      },
+      {
+        "text": "Dishwasher"
+      },
+      {
+        "text": "Refrigerator unit"
+      },
+      {
+        "text": "Electrical & plumbing modifications"
+      },
+      {
+        "text": "False ceiling & tile work"
+      }
     ],
     "whyEyebrow": "THE HOME CARE DIFFERENCE",
     "whyTitle": "Better kitchens start",
     "whyHighlight": "with better care.",
     "reasons": [
-      { "text": "Premium quality materials" },
-      { "text": "Modern European designs" },
-      { "text": "Factory precision manufacturing" },
-      { "text": "Experienced installation team" },
-      { "text": "Competitive pricing" },
-      { "text": "Warranty on workmanship" },
-      { "text": "Timely project completion" }
+      {
+        "text": "Premium quality materials"
+      },
+      {
+        "text": "Modern European designs"
+      },
+      {
+        "text": "Factory precision manufacturing"
+      },
+      {
+        "text": "Experienced installation team"
+      },
+      {
+        "text": "Competitive pricing"
+      },
+      {
+        "text": "Warranty on workmanship"
+      },
+      {
+        "text": "Timely project completion"
+      }
     ],
     "packages": [
       {
@@ -433,33 +574,57 @@
           {
             "title": "Cabinet construction",
             "items": [
-              { "text": "16mm Lasani Board cabinet boxes (ZRK Company)" },
-              { "text": "Nova UV Glossy Sheet cabinet shutters" },
-              { "text": "Machine edge banding for a seamless finish" }
+              {
+                "text": "16mm Lasani Board cabinet boxes (ZRK Company)"
+              },
+              {
+                "text": "Nova UV Glossy Sheet cabinet shutters"
+              },
+              {
+                "text": "Machine edge banding for a seamless finish"
+              }
             ]
           },
           {
             "title": "Aluminium cabinets",
             "items": [
-              { "text": "4 aluminium profile glass cabinets" },
-              { "text": "Premium profile finish" }
+              {
+                "text": "4 aluminium profile glass cabinets"
+              },
+              {
+                "text": "Premium profile finish"
+              }
             ]
           },
           {
             "title": "Hardware",
             "items": [
-              { "text": "Soft-close cabinet hinges" },
-              { "text": "Premium quality hardware" }
+              {
+                "text": "Soft-close cabinet hinges"
+              },
+              {
+                "text": "Premium quality hardware"
+              }
             ]
           },
           {
             "title": "5 basic accessories",
             "items": [
-              { "text": "Cutlery tray" },
-              { "text": "Bottle pull-out" },
-              { "text": "Tandem drawer" },
-              { "text": "Waste bin" },
-              { "text": "Under-sink organizer" }
+              {
+                "text": "Cutlery tray"
+              },
+              {
+                "text": "Bottle pull-out"
+              },
+              {
+                "text": "Tandem drawer"
+              },
+              {
+                "text": "Waste bin"
+              },
+              {
+                "text": "Under-sink organizer"
+              }
             ]
           }
         ]
@@ -476,35 +641,63 @@
           {
             "title": "Cabinet construction",
             "items": [
-              { "text": "16mm waterproof PVC Sheet cabinet boxes" },
-              { "text": "Al Noor UV Glossy Sheet cabinet shutters" },
-              { "text": "Machine edge banding for a premium finish" }
+              {
+                "text": "16mm waterproof PVC Sheet cabinet boxes"
+              },
+              {
+                "text": "Al Noor UV Glossy Sheet cabinet shutters"
+              },
+              {
+                "text": "Machine edge banding for a premium finish"
+              }
             ]
           },
           {
             "title": "Aluminium cabinets",
             "items": [
-              { "text": "8 aluminium profile glass cabinets" },
-              { "text": "Integrated profile LED lighting" }
+              {
+                "text": "8 aluminium profile glass cabinets"
+              },
+              {
+                "text": "Integrated profile LED lighting"
+              }
             ]
           },
           {
             "title": "Hardware",
             "items": [
-              { "text": "Premium soft-close cabinet hinges" },
-              { "text": "High-quality hardware fittings" }
+              {
+                "text": "Premium soft-close cabinet hinges"
+              },
+              {
+                "text": "High-quality hardware fittings"
+              }
             ]
           },
           {
             "title": "7 basic accessories",
             "items": [
-              { "text": "Cutlery tray" },
-              { "text": "Bottle pull-out" },
-              { "text": "Tandem drawer" },
-              { "text": "Corner carousel" },
-              { "text": "Under-sink organizer" },
-              { "text": "Waste bin" },
-              { "text": "Spice pull-out" }
+              {
+                "text": "Cutlery tray"
+              },
+              {
+                "text": "Bottle pull-out"
+              },
+              {
+                "text": "Tandem drawer"
+              },
+              {
+                "text": "Corner carousel"
+              },
+              {
+                "text": "Under-sink organizer"
+              },
+              {
+                "text": "Waste bin"
+              },
+              {
+                "text": "Spice pull-out"
+              }
             ]
           }
         ]
@@ -521,40 +714,78 @@
           {
             "title": "Cabinet construction",
             "items": [
-              { "text": "18mm waterproof PVC Sheet cabinet boxes" },
-              { "text": "6mm PVC Sheet cabinet back panels" },
-              { "text": "Al Noor UV Glossy Sheet cabinet shutters" },
-              { "text": "Machine edge banding for a flawless finish" }
+              {
+                "text": "18mm waterproof PVC Sheet cabinet boxes"
+              },
+              {
+                "text": "6mm PVC Sheet cabinet back panels"
+              },
+              {
+                "text": "Al Noor UV Glossy Sheet cabinet shutters"
+              },
+              {
+                "text": "Machine edge banding for a flawless finish"
+              }
             ]
           },
           {
             "title": "Aluminium cabinets",
             "items": [
-              { "text": "8 aluminium profile glass cabinets" },
-              { "text": "1 floor-to-ceiling pantry/tower unit (approx. 4′ × 7′)" },
-              { "text": "Profile LED lighting in all aluminium cabinets" },
-              { "text": "Motion sensor (touchless) lighting system" }
+              {
+                "text": "8 aluminium profile glass cabinets"
+              },
+              {
+                "text": "1 floor-to-ceiling pantry/tower unit (approx. 4′ × 7′)"
+              },
+              {
+                "text": "Profile LED lighting in all aluminium cabinets"
+              },
+              {
+                "text": "Motion sensor (touchless) lighting system"
+              }
             ]
           },
           {
             "title": "Hardware",
             "items": [
-              { "text": "Premium soft-close cabinet hinges" },
-              { "text": "Heavy-duty premium hardware" }
+              {
+                "text": "Premium soft-close cabinet hinges"
+              },
+              {
+                "text": "Heavy-duty premium hardware"
+              }
             ]
           },
           {
             "title": "9 premium accessories",
             "items": [
-              { "text": "Cutlery tray" },
-              { "text": "Bottle pull-out" },
-              { "text": "Tandem drawer" },
-              { "text": "Magic corner" },
-              { "text": "Under-sink organizer" },
-              { "text": "Waste bin" },
-              { "text": "Spice pull-out" },
-              { "text": "Pantry pull-out" },
-              { "text": "Corner storage system" }
+              {
+                "text": "Cutlery tray"
+              },
+              {
+                "text": "Bottle pull-out"
+              },
+              {
+                "text": "Tandem drawer"
+              },
+              {
+                "text": "Magic corner"
+              },
+              {
+                "text": "Under-sink organizer"
+              },
+              {
+                "text": "Waste bin"
+              },
+              {
+                "text": "Spice pull-out"
+              },
+              {
+                "text": "Pantry pull-out"
+              },
+              {
+                "text": "Corner storage system"
+              }
             ]
           }
         ]
@@ -621,18 +852,39 @@
     "titleHighlight": "something lasting",
     "intro": "Whether you're planning a renovation, a new build, or a full interior redesign — tell us what you're imagining and we'll take it from there.",
     "details": [
-      { "label": "01 — Email", "value": "hello@homecareconstructions.com", "href": "mailto:hello@homecareconstructions.com" },
-      { "label": "02 — Phone", "value": "03181552274", "href": "https://wa.me/923181552274" },
-      { "label": "03 — Studio", "value": "Rawalpindi, Pakistan", "href": "" }
+      {
+        "label": "01 — Email",
+        "value": "hello@homecareconstructions.com",
+        "href": "mailto:hello@homecareconstructions.com"
+      },
+      {
+        "label": "02 — Phone",
+        "value": "03181552274",
+        "href": "https://wa.me/923181552274"
+      },
+      {
+        "label": "03 — Studio",
+        "value": "Rawalpindi, Pakistan",
+        "href": ""
+      }
     ],
     "hoursEyebrow": "VISIT",
     "hoursTitle": "Hours &",
     "hoursHighlight": "studio",
     "hoursIntro": "Consultations by appointment. We typically reply within one business day.",
     "hours": [
-      { "label": "Mon — Fri", "value": "10:00 am – 6:00 pm" },
-      { "label": "Saturday", "value": "By appointment" },
-      { "label": "Sunday", "value": "Closed" }
+      {
+        "label": "Mon — Fri",
+        "value": "10:00 am – 6:00 pm"
+      },
+      {
+        "label": "Saturday",
+        "value": "By appointment"
+      },
+      {
+        "label": "Sunday",
+        "value": "Closed"
+      }
     ],
     "formEyebrow": "CONTACT",
     "nameLabel": "01 — YOUR NAME",
@@ -655,13 +907,34 @@
     "messageError": "Tell us a little more (at least 10 characters).",
     "whatsappIntro": "Hello Home Care Constructions, I'd like to discuss a project.",
     "projectTypes": [
-      { "value": "interior", "label": "Interior Design" },
-      { "value": "renovation", "label": "Renovation & Remodeling" },
-      { "value": "kitchenRenovation", "label": "Kitchen Renovation" },
-      { "value": "construction", "label": "New Construction" },
-      { "value": "furniture", "label": "Custom Furniture" },
-      { "value": "consultation", "label": "Design Consultation" },
-      { "value": "other", "label": "Other" }
+      {
+        "value": "interior",
+        "label": "Interior Design"
+      },
+      {
+        "value": "renovation",
+        "label": "Renovation & Remodeling"
+      },
+      {
+        "value": "kitchenRenovation",
+        "label": "Kitchen Renovation"
+      },
+      {
+        "value": "construction",
+        "label": "New Construction"
+      },
+      {
+        "value": "furniture",
+        "label": "Custom Furniture"
+      },
+      {
+        "value": "consultation",
+        "label": "Design Consultation"
+      },
+      {
+        "value": "other",
+        "label": "Other"
+      }
     ],
     "seo": {
       "metaTitle": "Contact | Home Care Constructions",
