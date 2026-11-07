@@ -47,3 +47,16 @@ Set `CONTENT_EDIT_KEY` if `/edit` should ask for a password before saving. On Ve
 1. Add the domain in **Project → Settings → Domains**.
 2. Set `NEXT_PUBLIC_SITE_URL` to `https://your-domain.com`.
 3. Redeploy.
+
+## Save from the live /edit page
+
+The live `/edit` page can commit `src/content/site.json` to GitHub. Vercel then redeploys, and the change is live in about a minute.
+
+In Vercel → Project → Settings → Environment Variables, add:
+
+- `CONTENT_EDIT_KEY`: a password you choose. You type it on the edit page.
+- `GITHUB_TOKEN`: a fine-grained GitHub token for this repository only, with **Contents: Read and write** permission.
+- `GITHUB_BRANCH` (optional): the branch to commit to. The default is the branch Vercel deployed.
+- `GITHUB_REPO` (optional): `owner/name`. Vercel fills this in on its own for Git deployments.
+
+Redeploy once after adding them. Pull before you edit locally, so you get the commits made from the live page.

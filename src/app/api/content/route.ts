@@ -1,7 +1,7 @@
 import { timingSafeEqual } from "crypto";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
-import { validateSiteFile, writeSiteFile } from "@/lib/content-file";
+import { commitSiteFile, usesGitHub, validateSiteFile, writeSiteFile } from "@/lib/content-file";
 
 function canEdit(request: Request) {
   const expected = process.env.CONTENT_EDIT_KEY;
@@ -31,6 +31,16 @@ export async function PUT(request: Request) {
 
   const invalid = validateSiteFile(body);
   if (invalid) return NextResponse.json({ error: invalid }, { status: 400 });
+
+  if (usesGitHub()) {
+    try {
+      await commitSiteFile(body);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Could not save to GitHub.";
+      return NextResponse.json({ error: message }, { status: 502 });
+    }
+    return NextResponse.json({ ok: true, deploying: true });
+  }
 
   try {
     await writeSiteFile(body);

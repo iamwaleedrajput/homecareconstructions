@@ -32,7 +32,7 @@ export default function ContentEditor({
     setPending(true);
     setMessage("");
     let response: Response;
-    let result: { error?: string } | null;
+    let result: { error?: string; deploying?: boolean } | null;
     try {
       response = await fetch("/api/content", {
         method: "PUT",
@@ -43,7 +43,7 @@ export default function ContentEditor({
         body: JSON.stringify(parsed),
         signal: AbortSignal.timeout(20000),
       });
-      result = (await response.json().catch(() => null)) as { error?: string } | null;
+      result = (await response.json().catch(() => null)) as { error?: string; deploying?: boolean } | null;
     } catch (error) {
       const timedOut = error instanceof DOMException && error.name === "TimeoutError";
       setMessage(
@@ -62,7 +62,11 @@ export default function ContentEditor({
     }
 
     setText(`${JSON.stringify(parsed, null, 2)}\n`);
-    setMessage("Saved. src/content/site.json is updated.");
+    setMessage(
+      result?.deploying
+        ? "Saved to GitHub. The live site updates in about a minute, after Vercel redeploys."
+        : "Saved. src/content/site.json is updated.",
+    );
   }
 
   return (
@@ -120,8 +124,8 @@ export default function ContentEditor({
         {canSave ? null : (
           <p className={styles.note}>
             This server will not write the file. Change <code>src/content/site.json</code> in the
-            project and redeploy, or set <code>CONTENT_EDIT_KEY</code> on a server that can store
-            files.
+            project and redeploy, or set <code>CONTENT_EDIT_KEY</code> and <code>GITHUB_TOKEN</code>{" "}
+            to save from here.
           </p>
         )}
       </div>
