@@ -23,11 +23,16 @@ export default function QuoteCalculator({
     packages[0]?.name ??
     "";
   const [selectedPackage, setSelectedPackage] = useState(initial);
-  const [cabinetArea, setCabinetArea] = useState("");
+  const [dimensions, setDimensions] = useState({ length: "", width: "", height: "" });
 
   const chosenPackage =
     packages.find((option) => option.name === selectedPackage) ?? packages[0];
-  const area = Number(cabinetArea);
+  const sides = [dimensions.length, dimensions.width, dimensions.height].map(Number);
+  const hasAllSides = sides.every((side) => Number.isFinite(side) && side > 0);
+  const area = hasAllSides ? sides[0] * sides[1] * sides[2] : 0;
+  const cabinetArea = hasAllSides
+    ? `${dimensions.length} × ${dimensions.width} × ${dimensions.height} ft = ${formatPrice(area)}`
+    : "";
   const estimate = useMemo(
     () =>
       chosenPackage && Number.isFinite(area) && area > 0
@@ -91,21 +96,28 @@ export default function QuoteCalculator({
             <span className="section-eyebrow">{content.stepTwoEyebrow}</span>
             <strong>{content.stepTwoLabel}</strong>
           </label>
-          <div className="quote-area-input-wrap">
-            <input
-              id="cabinet-area"
-              name="cabinet-area"
-              type="number"
-              min="1"
-              step="0.5"
-              inputMode="decimal"
-              placeholder={content.areaPlaceholder}
-              value={cabinetArea}
-              onChange={(event) => setCabinetArea(event.target.value)}
-            />
-            <span>{content.areaUnit}</span>
+          <div className="quote-dimension-grid">
+            {(["length", "width", "height"] as const).map((side) => (
+              <div className="quote-area-input-wrap" key={side}>
+                <input
+                  id={side === "length" ? "cabinet-area" : `cabinet-${side}`}
+                  name={`cabinet-${side}`}
+                  type="number"
+                  min="0.1"
+                  step="0.1"
+                  inputMode="decimal"
+                  aria-label={`${side[0].toUpperCase()}${side.slice(1)} in feet`}
+                  placeholder={`${side[0].toUpperCase()}${side.slice(1)}`}
+                  value={dimensions[side]}
+                  onChange={(event) =>
+                    setDimensions((current) => ({ ...current, [side]: event.target.value }))
+                  }
+                />
+                <span>ft</span>
+              </div>
+            ))}
           </div>
-          <p>{content.stepTwoHelp}</p>
+          <p>Enter length, width and height in feet. We multiply them (L × W × H) to get your estimate.</p>
         </div>
       </section>
 
@@ -124,9 +136,9 @@ export default function QuoteCalculator({
             </strong>
           </div>
           <div>
-            <span>{content.labelArea}</span>
+            <span>Size (L × W × H)</span>
             <strong>
-              {cabinetArea && area > 0 ? `${formatPrice(area)} ${content.areaUnit}` : "—"}
+              {hasAllSides ? `${formatPrice(area)} ${content.areaUnit}` : "—"}
             </strong>
           </div>
         </div>

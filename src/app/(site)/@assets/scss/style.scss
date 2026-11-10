@@ -3701,3 +3701,17 @@ body {
     max-width: 145px;
   }
 }
+
+.quote-dimension-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+
+  .quote-area-input-wrap input {
+    min-width: 0;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
