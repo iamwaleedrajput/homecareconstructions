@@ -5,11 +5,15 @@ import img from "../@assets/images/bg/1.jpg";
 import img2 from "../@assets/images/misc/1.jpg";
 import img3 from "../@assets/images/misc/2.jpg";
 import img4 from "../@assets/images/misc/3.jpg";
+import img5 from "../@assets/images/misc/4.jpeg";
+import img6 from "../@assets/images/misc/5.jpeg";
+import img7 from "../@assets/images/misc/6.jpeg";
+import img8 from "../@assets/images/misc/7.jpeg";
 import type { StaticImageData } from "next/image";
 import Lines from "../components/Lines";
 import { getGalleryPage, getGlobal, pageMetadata } from "@/lib/site";
 
-const fallbacks: StaticImageData[] = [img, img2, img3, img4];
+const fallbacks: StaticImageData[] = [img, img2, img3, img4, img5, img6, img7, img8];
 
 function imageSrc(image: string | StaticImageData) {
   return typeof image === "string" ? image : image.src;
