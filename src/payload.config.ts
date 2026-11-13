@@ -30,6 +30,7 @@ const allowedOrigins = [
   process.env.VERCEL_BRANCH_URL && `https://${process.env.VERCEL_BRANCH_URL}`,
   process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
   "https://homecareconstructions.vercel.app",
+  "https://homecareconstructions.com",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
 ]
