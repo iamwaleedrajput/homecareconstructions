@@ -3715,3 +3715,147 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.quote-shape-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 13px 0 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    grid-column: 1 / -1;
+    float: none;
+    margin-bottom: 0;
+    color: $primary;
+    font-size: 14px;
+    font-weight: 600;
+  }
+}
+
+.quote-shape-option {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 14px 10px;
+  border: 1px solid rgba($primary, 0.22);
+  background: #fff;
+  text-align: center;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:focus-within {
+    box-shadow: 0 0 0 3px rgba($primary-gold, 0.12);
+  }
+
+  &.is-selected {
+    border-color: $primary-gold;
+    box-shadow: inset 0 0 0 1px $primary-gold;
+  }
+
+  strong {
+    color: $primary;
+    font-size: 14px;
+  }
+
+  small {
+    color: rgba($primary, 0.6);
+    font-size: 12px;
+  }
+}
+
+.quote-shape-plan {
+  width: 64px;
+  height: 52px;
+
+  path {
+    fill: rgba($primary-gold, 0.25);
+    stroke: $primary;
+    stroke-width: 1.5;
+  }
+
+  text {
+    fill: $primary;
+    font-size: 10px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: middle;
+  }
+}
+
+.quote-size-help {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 12px;
+  background: rgba($primary-gold, 0.08);
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+    color: $primary;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quote-size-guide {
+  width: 100%;
+  height: auto;
+
+  .box {
+    fill: #fff;
+    stroke: $primary;
+    stroke-width: 1.5;
+  }
+
+  .top {
+    fill: rgba($primary-gold, 0.3);
+  }
+
+  .side {
+    fill: rgba($primary, 0.08);
+  }
+
+  .measure {
+    path {
+      fill: none;
+      stroke: $primary-gold;
+      stroke-width: 1.5;
+    }
+
+    text {
+      fill: $primary;
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle;
+    }
+  }
+}
+
+.quote-wall-run {
+  margin-top: 14px;
+}
+
+.quote-wall-title {
+  display: block;
+  color: $primary;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.quote-wall-run .quote-area-input-wrap {
+  margin-top: 6px;
+}
