@@ -1,5 +1,8 @@
 import { cache } from "react";
 import type { Metadata } from "next";
+import { unstable_cache } from "next/cache";
+import { getPayload } from "payload";
+import config from "@payload-config";
 import fallbackSite from "../content/site.json";
 import { readSiteFile } from "./content-file";
 
@@ -887,7 +890,26 @@ const sectionBySlug: Record<string, string> = {
   "contact-page": "contactPage",
 };
 
+async function fetchFromPayload(slug: string) {
+  if (!process.env.DATABASE_URL) return null;
+  try {
+    return await unstable_cache(
+      async () => {
+        const payload = await getPayload({ config });
+        return payload.findGlobal({ slug: slug as "site", depth: 2 });
+      },
+      ["payload-global", slug],
+      { revalidate: 60, tags: ["payload", `payload:${slug}`] },
+    )();
+  } catch (error) {
+    console.error(`Payload request for ${slug} failed`, error);
+    return null;
+  }
+}
+
 async function fetchEntry(slug: string) {
+  const fromPayload = await fetchFromPayload(slug);
+  if (fromPayload) return fromPayload;
   try {
     const content = await readSiteFile();
     return content[sectionBySlug[slug]] ?? null;
