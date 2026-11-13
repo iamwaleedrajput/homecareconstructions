@@ -22,7 +22,19 @@ const sqliteFile = path.resolve(dirname, "../.payload/data.db");
 if (!usePostgres) {
   fs.mkdirSync(path.dirname(sqliteFile), { recursive: true });
 }
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+// Every address the admin can be opened from. Payload ignores the login cookie on
+// saves that come from any other address, which shows "You are not allowed to perform this action".
+const allowedOrigins = [
+  process.env.NEXT_PUBLIC_SITE_URL,
+  process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`,
+  process.env.VERCEL_BRANCH_URL && `https://${process.env.VERCEL_BRANCH_URL}`,
+  process.env.VERCEL_URL && `https://${process.env.VERCEL_URL}`,
+  "https://homecareconstructions.vercel.app",
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+]
+  .filter((origin): origin is string => Boolean(origin))
+  .map((origin) => origin.replace(/\/$/, ""));
 
 function markerAt(doc: unknown, path: string[]) {
   let current: unknown = doc;
@@ -94,9 +106,8 @@ export default buildConfig({
   globals,
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "local-dev-secret-change-before-deploy",
-  serverURL: siteUrl,
-  cors: [siteUrl],
-  csrf: [siteUrl],
+  cors: allowedOrigins,
+  csrf: allowedOrigins,
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
