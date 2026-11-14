@@ -14,7 +14,7 @@ const shapes: Record<
   L: {
     label: "L-Shape",
     walls: ["Wall A", "Wall B"],
-    defaults: ["10", "8"],
+    defaults: ["", ""],
     heights: [
       { label: "Single — 5 ft", value: 5 },
       { label: "Ceiling — 7.5 ft", value: 7.5 },
@@ -23,7 +23,7 @@ const shapes: Record<
   U: {
     label: "U-Shape",
     walls: ["Wall A", "Wall B", "Wall C"],
-    defaults: ["10", "8", "10"],
+    defaults: ["", "", ""],
     heights: [
       { label: "Single — 5 ft", value: 5 },
       { label: "Ceiling — 7 ft", value: 7 },
