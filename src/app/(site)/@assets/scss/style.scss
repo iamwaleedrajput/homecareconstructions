@@ -3859,3 +3859,57 @@ body {
 .quote-wall-run .quote-area-input-wrap {
   margin-top: 6px;
 }
+
+.quote-wall-grid {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+
+  &.walls-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(0, 1.4fr);
+  }
+
+  &.walls-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.4fr);
+  }
+
+  @media (max-width: 760px) {
+    &.walls-2,
+    &.walls-3 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 480px) {
+    &.walls-2,
+    &.walls-3 {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.quote-wall-field {
+  min-width: 0;
+
+  label {
+    display: block;
+    color: $primary;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .quote-area-input-wrap {
+    margin-top: 6px;
+  }
+
+  select {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 10px;
+    border: 0;
+    background: transparent;
+    color: $primary;
+    font: inherit;
+    outline: none;
+  }
+}

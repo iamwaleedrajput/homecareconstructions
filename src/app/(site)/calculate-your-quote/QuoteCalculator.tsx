@@ -1,26 +1,48 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import type { KitchenPackage, QuoteContent } from "@/lib/site";
 import { formatPrice, whatsappHref } from "@/lib/format";
 
 type KitchenShape = "L" | "U";
-type SizeKey = "length" | "width" | "height";
-type Run = Record<SizeKey, string>;
 
-const sizeKeys: SizeKey[] = ["length", "width", "height"];
-const emptyRun: Run = { length: "", width: "", height: "" };
-
-const shapes: Record<KitchenShape, { label: string; walls: string[] }> = {
-  L: { label: "L-shape", walls: ["Wall A", "Wall B"] },
-  U: { label: "U-shape", walls: ["Wall A", "Wall B", "Wall C"] },
+// Same rules as kitchen-quote-calculator-updated.html.
+const shapes: Record<
+  KitchenShape,
+  { label: string; walls: string[]; defaults: string[]; heights: { label: string; value: number }[] }
+> = {
+  L: {
+    label: "L-Shape",
+    walls: ["Wall A", "Wall B"],
+    defaults: ["10", "8"],
+    heights: [
+      { label: "Single — 5 ft", value: 5 },
+      { label: "Ceiling — 7.5 ft", value: 7.5 },
+    ],
+  },
+  U: {
+    label: "U-Shape",
+    walls: ["Wall A", "Wall B", "Wall C"],
+    defaults: ["10", "8", "10"],
+    heights: [
+      { label: "Single — 5 ft", value: 5 },
+      { label: "Ceiling — 7 ft", value: 7 },
+    ],
+  },
 };
 
-const sizeHelp: Record<SizeKey, string> = {
-  length: "Horizontal, along the wall",
-  width: "Horizontal top, wall to front edge",
-  height: "Vertical, floor to top",
-};
+// Each corner shares about 2 ft of cabinet between two walls, so it is counted once.
+const cornerAllowance = 2;
+
+function cornerDeduction(shape: KitchenShape, lengths: number[]) {
+  if (shape === "L") return Math.min(cornerAllowance, lengths[0], lengths[1]);
+  return (
+    Math.min(cornerAllowance, lengths[0], lengths[1] / 2) +
+    Math.min(cornerAllowance, lengths[2], lengths[1] / 2)
+  );
+}
+
+const toFeet = (value: string) => Math.max(0, Number(value) || 0);
 
 // Floor plan of each shape, with the walls lettered to match the inputs.
 function ShapePlan({ shape }: { shape: KitchenShape }) {
@@ -40,27 +62,6 @@ function ShapePlan({ shape }: { shape: KitchenShape }) {
           <text x="63" y="40">C</text>
         </>
       )}
-    </svg>
-  );
-}
-
-// One cabinet drawn in 3D, showing which way each size is measured.
-function SizeGuide() {
-  return (
-    <svg viewBox="0 0 260 182" role="img" aria-label="Length is horizontal, height is vertical, width is the horizontal top depth" className="quote-size-guide">
-      <path className="box" d="M40 60 H190 V150 H40 Z" />
-      <path className="box top" d="M40 60 L80 30 H230 L190 60 Z" />
-      <path className="box side" d="M190 60 L230 30 V120 L190 150 Z" />
-      <g className="measure">
-        <path d="M40 160 H190" />
-        <path d="M40 155 V165 M190 155 V165" />
-        <text x="115" y="178">Length (horizontal)</text>
-        <path d="M20 60 V150" />
-        <path d="M15 60 H25 M15 150 H25" />
-        <text x="14" y="105" transform="rotate(-90 14 105)">Height (vertical)</text>
-        <path d="M80 22 L40 52" />
-        <text x="96" y="22">Width (horizontal top)</text>
-      </g>
     </svg>
   );
 }
@@ -85,46 +86,42 @@ export default function QuoteCalculator({
     "";
   const [selectedPackage, setSelectedPackage] = useState(initial);
   const [shape, setShape] = useState<KitchenShape>("L");
-  const [runs, setRuns] = useState<Run[]>(() => shapes.U.walls.map(() => ({ ...emptyRun })));
+  const [lengths, setLengths] = useState<Record<KitchenShape, string[]>>({
+    L: shapes.L.defaults,
+    U: shapes.U.defaults,
+  });
+  const [heights, setHeights] = useState<Record<KitchenShape, number>>({ L: 7.5, U: 7 });
 
   const chosenPackage =
     packages.find((option) => option.name === selectedPackage) ?? packages[0];
   const walls = shapes[shape].walls;
-  const activeRuns = runs.slice(0, walls.length);
-  const runSizes = activeRuns.map((run) =>
-    sizeKeys.map((key) => Number(run[key])),
-  );
-  const hasAllSides = runSizes.every((sizes) =>
-    sizes.every((size) => Number.isFinite(size) && size > 0),
-  );
-  const area = hasAllSides
-    ? runSizes.reduce((total, [length, width, height]) => total + length * width * height, 0)
-    : 0;
-  const cabinetArea = hasAllSides
-    ? `${shapes[shape].label} — ${activeRuns
-        .map((run, index) => `${walls[index]}: ${run.length} × ${run.width} × ${run.height} ft`)
-        .join("; ")} = ${formatPrice(area)}`
-    : "";
+  const wallFeet = lengths[shape].map(toFeet);
+  const height = heights[shape];
+  const totalLength = wallFeet.reduce((sum, value) => sum + value, 0);
+  const deduction = cornerDeduction(shape, wallFeet);
+  const effective = Math.max(0, totalLength - deduction);
+  const area = effective * height;
+  const rate = chosenPackage?.pricePerSqFt ?? 0;
+  const estimate = area * rate;
 
-  function updateRun(index: number, key: SizeKey, value: string) {
-    setRuns((current) =>
-      current.map((run, runIndex) => (runIndex === index ? { ...run, [key]: value } : run)),
-    );
-  }
-  const estimate = useMemo(
-    () =>
-      chosenPackage && Number.isFinite(area) && area > 0
-        ? area * chosenPackage.pricePerSqFt
-        : 0,
-    [area, chosenPackage],
-  );
   const quoteMessage = [
     content.whatsappIntro,
     `${content.messagePackageLabel}: ${chosenPackage?.name ?? ""}`,
-    `${content.messageAreaLabel}: ${cabinetArea || content.messageAreaMissing} ${content.areaUnit}`,
+    `Layout: ${shapes[shape].label} kitchen`,
+    ...wallFeet.map((value, index) => `${walls[index]}: ${formatPrice(value)} ft`),
+    `Cabinet height: ${formatPrice(height)} ft`,
+    `Effective running length: ${formatPrice(effective)} ft`,
+    `${content.messageAreaLabel}: ${formatPrice(area)} sq ft`,
     `${content.messageTotalLabel}: ${currency} ${formatPrice(estimate)}`,
     content.messageClosing,
   ].join("\n");
+
+  function updateLength(index: number, value: string) {
+    setLengths((current) => ({
+      ...current,
+      [shape]: current[shape].map((item, itemIndex) => (itemIndex === index ? value : item)),
+    }));
+  }
 
   if (!chosenPackage) return null;
 
@@ -170,12 +167,12 @@ export default function QuoteCalculator({
         </fieldset>
 
         <div className="quote-area-field">
-          <label htmlFor="cabinet-area">
+          <label htmlFor="wall-0">
             <span className="section-eyebrow">{content.stepTwoEyebrow}</span>
             <strong>{content.stepTwoLabel}</strong>
           </label>
           <fieldset className="quote-shape-options">
-            <legend>Kitchen shape</legend>
+            <legend>Kitchen layout</legend>
             {(Object.keys(shapes) as KitchenShape[]).map((key) => (
               <label
                 key={key}
@@ -189,51 +186,54 @@ export default function QuoteCalculator({
                   onChange={() => setShape(key)}
                 />
                 <ShapePlan shape={key} />
-                <strong>{shapes[key].label}</strong>
-                <small>{shapes[key].walls.length} walls of cabinets</small>
+                <strong>{shapes[key].label} Kitchen</strong>
+                <small>
+                  {shapes[key].walls.length} wall lengths and cabinet height
+                </small>
               </label>
             ))}
           </fieldset>
 
-          <div className="quote-size-help">
-            <SizeGuide />
-            <ul>
-              <li><strong>Length</strong> — {sizeHelp.length}</li>
-              <li><strong>Height</strong> — {sizeHelp.height}</li>
-              <li><strong>Width</strong> — {sizeHelp.width}</li>
-            </ul>
-          </div>
-
-          {walls.map((wall, index) => (
-            <div className="quote-wall-run" key={wall}>
-              <strong className="quote-wall-title">{wall}</strong>
-              <div className="quote-dimension-grid">
-                {sizeKeys.map((key) => {
-                  const label = `${key[0].toUpperCase()}${key.slice(1)}`;
-                  return (
-                    <div className="quote-area-input-wrap" key={key}>
-                      <input
-                        id={index === 0 && key === "length" ? "cabinet-area" : `cabinet-${index}-${key}`}
-                        name={`cabinet-${index}-${key}`}
-                        type="number"
-                        min="0.1"
-                        step="0.1"
-                        inputMode="decimal"
-                        aria-label={`${wall} ${label} in feet (${sizeHelp[key].toLowerCase()})`}
-                        placeholder={label}
-                        value={activeRuns[index]?.[key] ?? ""}
-                        onChange={(event) => updateRun(index, key, event.target.value)}
-                      />
-                      <span>ft</span>
-                    </div>
-                  );
-                })}
+          <div className={`quote-wall-grid walls-${walls.length}`}>
+            {walls.map((wall, index) => (
+              <div className="quote-wall-field" key={`${shape}-${wall}`}>
+                <label htmlFor={`wall-${index}`}>{wall} Length (ft)</label>
+                <div className="quote-area-input-wrap">
+                  <input
+                    id={`wall-${index}`}
+                    type="number"
+                    min="0"
+                    step="0.1"
+                    inputMode="decimal"
+                    value={lengths[shape][index]}
+                    onChange={(event) => updateLength(index, event.target.value)}
+                  />
+                  <span>ft</span>
+                </div>
+              </div>
+            ))}
+            <div className="quote-wall-field">
+              <label htmlFor="cabinet-height">Cabinet Height</label>
+              <div className="quote-area-input-wrap">
+                <select
+                  id="cabinet-height"
+                  value={height}
+                  onChange={(event) =>
+                    setHeights((current) => ({ ...current, [shape]: Number(event.target.value) }))
+                  }
+                >
+                  {shapes[shape].heights.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-          ))}
+          </div>
           <p>
-            Measure each wall of cabinets in feet. We add up Length × Width × Height for every
-            wall to get your estimate.
+            All lengths are in feet. Corners shared by two walls are counted once (about{" "}
+            {cornerAllowance} ft is taken off for each corner).
           </p>
         </div>
       </section>
@@ -247,15 +247,21 @@ export default function QuoteCalculator({
             <strong>{chosenPackage.name}</strong>
           </div>
           <div>
-            <span>{content.labelRate}</span>
-            <strong>
-              {currency} {formatPrice(chosenPackage.pricePerSqFt)} <small>{priceUnit}</small>
-            </strong>
+            <span>Layout</span>
+            <strong>{shapes[shape].label}</strong>
           </div>
           <div>
-            <span>{shapes[shape].label} size (L × W × H)</span>
+            <span>Effective running length</span>
+            <strong>{formatPrice(effective)} ft</strong>
+          </div>
+          <div>
+            <span>Cabinet height</span>
+            <strong>{formatPrice(height)} ft</strong>
+          </div>
+          <div>
+            <span>{content.labelRate}</span>
             <strong>
-              {hasAllSides ? `${formatPrice(area)} ${content.areaUnit}` : "—"}
+              {currency} {formatPrice(rate)} <small>{priceUnit}</small>
             </strong>
           </div>
         </div>
@@ -265,6 +271,10 @@ export default function QuoteCalculator({
             {currency} {formatPrice(estimate)}
           </strong>
         </div>
+        <p className="quote-estimate-disclaimer">
+          {formatPrice(area)} sq ft × {currency} {formatPrice(rate)}
+          {deduction > 0 ? ` (after ${formatPrice(deduction)} ft corner adjustment)` : ""}.
+        </p>
         <a
           className="quote-estimate-cta"
           href={whatsappHref(whatsappNumber, quoteMessage)}
